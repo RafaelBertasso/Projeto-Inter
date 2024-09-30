@@ -1,2 +1,3 @@
-# Projeto-Rio-Preto-Piscinas
- Projeto de aplicação web, em c# e .NET para a empresa Rio Preto Piscinas
+# Projeto Rio Preto Piscinas
+ - Aplicação web usando c# e .NET
+ - Tela de login para o usuário e agendamento de serviços
