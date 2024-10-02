@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\Projeto-Inter\\Projeto-Inter.csproj",
+      "projectUniqueName": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj",
       "projectName": "Projeto-Inter",
-      "projectPath": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\Projeto-Inter\\Projeto-Inter.csproj",
+      "projectPath": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj",
       "packagesPath": "C:\\Users\\Rafael\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\Projeto-Inter\\obj\\",
+      "outputPath": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Rafael\\AppData\\Roaming\\NuGet\\NuGet.Config"
