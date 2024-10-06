@@ -49,6 +49,13 @@ public class UserController : Controller
         user.DateOfBirth = model.DateOfBirth;
         user.Phone = model.Phone;
         user.Password = model.Password;
+        user.City = model.City;
+        user.Street = model.Street;
+        user.District = model.District;
+        user.Number = model.Number;
+        user.Complement = model.Complement;
+        user.State = model.State;
+        user.Cep = model.Cep;
 
         db.SaveChanges();
         return RedirectToAction("Read");
