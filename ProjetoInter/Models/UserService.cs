@@ -2,6 +2,7 @@ namespace ProjetoInter.Models;
 
 public class UserService
 {
+    public int UserServiceId { get; set; }
     public int UserId { get; set; }
     public int ServiceId { get; set; }
     public float Budget { get; set; }

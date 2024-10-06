@@ -1,0 +1,91 @@
+@model ProjetoInter.Models.User
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=User, initial-scale=1.0">
+    <title>Update</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+
+<body class="container">
+    <h2>Update</h2>
+
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/user/read">Users</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Update</li>
+        </ol>
+    </nav>
+
+    <form action="/user/update/@Model.UserId" method="post" class="row g-3">
+        <div class="col-md-6">
+            <label for="inputName4" class="form-label">Name </label>
+            <input type="text" class="form-control" id="floatingInput" name="Name" id="inputName4" value="@Model.Name"
+                required>
+        </div>
+        <div class="col-md-6">
+            <label for="inputPhone4" class="form-label">Phone</label>
+            <input type="tel" name="Phone" id="inputPhone4" class="form-control" value="@Model.Phone" required>
+        </div>
+        <div class="col-md-6">
+            <label for="inputDateOfBirth" class="form-label">Date of birth</label>
+            <input type="date" name="DateOfBirth" id="inputDateOfBirth" class="form-control" value="@Model.DateOfBirth"
+                required>
+        </div>
+        <div class="col-md-6">
+            <label for="inputGender" class="form-label">Gender</label>
+            <input type="text" name="Gender" id="inputGender" class="form-control" value="@Model.Gender" required>
+        </div>
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">E-Mail</label>
+            <input type="email" name="Email" id="inputEmail4" class="form-control" value="@Model.Email" required>
+        </div>
+        <div class="col-md-6">
+            <label for="inputPassword4" class="form-label">Password</label>
+            <input type="password" name="Password" id="inputPassword4" class="form-control" value="@Model.Password"
+                required>
+        </div>
+        <div class="col-12">
+            <label for="inputCity" class="form-label">City</label>
+            <input type="text" name="City" class="form-control" id="inputCity" value="@Model.City" required>
+        </div>
+        <div class="col-md-6">
+            <label for="inputStreet" class="form-label">Street</label>
+            <input type="text" name="Street" class="form-control" id="inputStreet" value="@Model.Street" required>
+        </div>
+        <div class="col-md-3">
+            <label for="inputDistrict" class="form-label">District</label>
+            <input type="text" name="District" class="form-control" id="inputDistrict" value="@Model.District" required>
+        </div>
+        <div class="col-md-3">
+            <label for="inputNumber" class="form-label">Number</label>
+            <input type="number" name="Number" class="form-control" id="inputNumber" value="@Model.Number" required>
+        </div>
+        <div class="col-md-4">
+            <label for="inputComplement" class="form-label">Complement</label>
+            <input type="text" name="Complement" class="form-control" id="inputComplement" value="@Model.Complement">
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">State</label>
+            <input type="text" name="State" class="form-control" id="inputState" value="@Model.State" required>
+        </div>
+        <div class="col-md-4">
+            <label for="inputCep" class="form-label">CEP</label>
+            <input type="text" name="Cep" class="form-control" id="inputCep" value="@Model.Cep" required>
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary w-100">Salvar</button>
+        </div>
+        <div class="col-md-6">
+            <a href="/user/read" class="btn btn-outline-secondary w-100">Voltar</a>
+        </div>
+    </form>
+
+</body>
+
+</html>

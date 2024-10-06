@@ -17,3 +17,15 @@ build_property.SupportLocalizedComponentNames =
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
 build_property.MSBuildProjectDirectory = C:\Users\Rafael\FATEC User\POO\Projeto-Rio-Preto-Piscinas\ProjetoInter
 build_property._RazorSourceGeneratorDebug = 
+
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/User/Read.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWFkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/User/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVcGRhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 

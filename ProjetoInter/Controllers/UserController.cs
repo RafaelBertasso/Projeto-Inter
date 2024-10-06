@@ -46,7 +46,7 @@ public class UserController : Controller
         user.Name = model.Name;
         user.Gender = model.Gender;
         user.Email = model.Email;
-        user.Birthday = model.Birthday;
+        user.DateOfBirth = model.DateOfBirth;
         user.Phone = model.Phone;
         user.Password = model.Password;
 

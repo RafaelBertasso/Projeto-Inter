@@ -8,5 +8,4 @@ public class ServiceDatabase : DbContext
     public DbSet<Service> Services{ get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<UserService> UserServices { get; set; }
-    public DbSet<Address> Addresses { get; set; }
 }
