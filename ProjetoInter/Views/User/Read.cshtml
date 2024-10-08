@@ -43,19 +43,18 @@
     <table class="table table-striped ">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Date Of Birth</th>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>Data de Nascimento</th>
                 <th>E-Mail</th>
-                <th>Password</th>
-                <th>Gender</th>
-                <th>City</th>
-                <th>Street</th>
-                <th>District</th>
-                <th>Number</th>
-                <th>Complement</th>
+                <th>Sexo</th>
+                <th>Cidade</th>
+                <th>Rua</th>
+                <th>Bairro</th>
+                <th>Número</th>
+                <th>Complemento</th>
                 <th>Cep</th>
-                <th>State</th>
+                <th>Estado</th>
             </tr>
         </thead>
         @foreach (var user in Model)
@@ -65,7 +64,6 @@
                 <td>@user.Phone</td>
                 <td>@user.DateOfBirth</td>
                 <td>@user.Email</td>
-                <td>@user.Password</td>
                 <td>@user.Gender</td>
                 <td>@user.City</td>
                 <td>@user.Street</td>

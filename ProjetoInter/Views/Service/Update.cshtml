@@ -24,16 +24,16 @@
 
     <form action="/service/update/@Model.ServiceId" method="post" class="row g-3">
         <div class="col-12">
-            <label for="inputName" class="form-label">Name</label>
+            <label for="inputName" class="form-label">Nome</label>
             <input type="text" class="form-control" id="inputName" name="Name" value="@Model.Name" required>
         </div>
         <div class="col-12">
-            <label for="inputDescription" class="form-label">Description</label>
+            <label for="inputDescription" class="form-label">Descrição</label>
             <input type="text" class="form-control" id="inputDescription" name="Description" value="@Model.Description"
                 required>
         </div>
         <div class="col-12">
-            <label for="formFileMultiple" class="form-label">Path Photo</label>
+            <label for="formFileMultiple" class="form-label">Caminho Fotos</label>
             <input type="file" name="PathFoto" id="formFileMultiple" class="form-control" value="@Model.PathFoto"
                 multiple>
         </div>
