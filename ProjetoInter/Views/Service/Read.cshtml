@@ -46,6 +46,7 @@
                 <th>Nome</th>
                 <th>Descrição</th>
                 <th>Fotos</th>
+                <th>Duração do serviço</th>
             </tr>
         </thead>
         @foreach (var service in Model)
@@ -54,6 +55,7 @@
                 <td>@service.Name</td>
                 <td>@service.Description</td>
                 <td>@service.PathFoto</td>
+                <td>@service.Duration</td>
                 <td>
                     <div class="btn-group" role="group">
                         <a href="/service/update/@service.ServiceId" class="btn btn-sm btn-outline-success"><i
