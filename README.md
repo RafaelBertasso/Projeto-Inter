@@ -1,3 +1,7 @@
 # Projeto Rio Preto Piscinas
  - Aplicação web usando c# e .NET
- - Tela de login para o usuário e agendamento de serviços
+
+# Funcionalidades
+ - Cadastro de usuários
+ - Cadastro de serviços
+ - Agendamento de serviços
