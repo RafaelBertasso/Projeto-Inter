@@ -15,7 +15,7 @@
 <body class="container-fluid">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <i class="bi bi-list"></i><a href="#" class="navbar-brand"> Menu</a>
+            <i class="bi bi-list"></i><a href="/menu/read" class="navbar-brand"> Menu</a>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
@@ -43,7 +43,6 @@
     <table class="table table-hover table-stripped">
         <thead>
             <tr>
-                <th>User Id</th>
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Date Of Birth</th>
@@ -62,7 +61,6 @@
         @foreach (var user in Model)
         {
             <tr>
-                <td>@user.UserId</td>
                 <td>@user.Name</td>
                 <td>@user.Phone</td>
                 <td>@user.DateOfBirth</td>

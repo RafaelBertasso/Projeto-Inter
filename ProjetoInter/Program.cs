@@ -10,6 +10,6 @@ builder.Services.AddDbContext<ServiceDatabase>(options => options.UseSqlServer("
 
 var app = builder.Build();
 
-app.MapControllerRoute("default", "{controller=User}/{action=Read}/{id?}");
+app.MapControllerRoute("default", "{controller=Menu}/{action=Read}/{id?}");
 
 app.Run();

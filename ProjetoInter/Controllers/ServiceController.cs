@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjetoInter.Models;
 
-namespace Projeto_Inter.Controllers;
+namespace ProjetoInter.Controllers;
 public class ServiceController : Controller
 {
     private readonly ServiceDatabase db;

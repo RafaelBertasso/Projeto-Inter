@@ -13,7 +13,7 @@ public class User
      public string City { get; set; }
     public string District { get; set; }
     public int Number { get; set; }
-    public string Complement { get; set; }
+    public string? Complement { get; set; }
     public string State { get; set; }
     public string Cep { get; set; }
 }
