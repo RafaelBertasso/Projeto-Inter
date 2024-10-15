@@ -69,5 +69,29 @@ public class UserController : Controller
 
         return RedirectToAction("Read");
     }
+
+    [HttpGet]
+    public ActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult Login(UserViewModel model)
+    {
+        var user = db.Users.Single(e => e.Email == model.Email && e.Password == model.Password);
+
+        if (user == null)
+        {
+            ViewBag.Autenticado = false;
+            return View(model);
+        }
+        else
+        {
+            HttpContext.Session.SetInt32("userId", user.UserId);
+            HttpContext.Session.SetString("userName", user.Name);
+            return RedirectToAction("Read", "Service");
+        }
+    }
 }
 
