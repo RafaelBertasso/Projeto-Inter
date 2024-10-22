@@ -13,6 +13,8 @@ public class ServiceController : Controller
 
     public ActionResult Read()
     {
+        var userName = HttpContext.Session.GetString("userName");
+        ViewBag.userName = userName;
         return View(db.Services.ToList());
     }
 

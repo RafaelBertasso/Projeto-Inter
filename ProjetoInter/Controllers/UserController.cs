@@ -79,7 +79,7 @@ public class UserController : Controller
     [HttpPost]
     public ActionResult Login(UserViewModel model)
     {
-        var user = db.Users.Single(e => e.Email == model.Email && e.Password == model.Password);
+        var user = db.Users.SingleOrDefault(e => e.Email == model.Email && e.Password == model.Password);
 
         if (user == null)
         {
