@@ -48,12 +48,16 @@
         input::placeholder {
             color: #d1c4e9;
         }
+
+        #link-conta {
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 <body>
     <div class="login-container">
-        <h2>Tela de Login</h2>
+        <h2>Login</h2>
         <form action="/user/login" method="post">
         @if (ViewBag.Autenticado != null || ViewBag.Autenticado == false)
         {
@@ -64,9 +68,13 @@
 
             <input type="email" name="Email" placeholder="E-mail" class="form-control" required> <br>
             <input type="password" name="Password" placeholder="Senha" class="form-control" required> <br>
-            <button class="btn btn-primary w-100">Login</button>
+            <div class="">
+                <button class="btn btn-primary w-100">Login</button>
+            </div>
+            <div class="">
+                <a href="/user/create" class="btn btn-primary w-100" id="link-conta">Criar conta</a>
+            </div>
         </form>
     </div>
 </body>
-
 </html>
