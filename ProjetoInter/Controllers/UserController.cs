@@ -12,7 +12,7 @@ public class UserController : Controller
         this.db = db;
     }
 
-    public ActionResult Read()
+    public IActionResult Read()
     {
         return View(db.Users.ToList());
     }
