@@ -14,7 +14,45 @@ public class UserServicesController : Controller
 
     public IActionResult Read()
     {
-        return View(db.UserServices.ToList());
+        var query = from user in db.Users
+            join userService in db.UserServices on user.UserId equals userService.UserId
+            join service in db.Services on userService.ServiceId equals service.ServiceId
+        where user.UserId == userService.UserId
+        where service.ServiceId == userService.ServiceId
+            select new UserService
+            {
+                UserId = user.UserId,
+                User = new User
+                {
+                    Name = user.Name,
+                    Email = user.Email,
+                    Phone = user.Phone,
+                    DateOfBirth = user.DateOfBirth,
+                    Password = user.Password,
+                    Gender = user.Gender,
+                    Street = user.Street,
+                    City = user.City,
+                    State = user.State,
+                    District = user.District,
+                    Number = user.Number,
+                    Complement = user.Complement,
+                    Cep = user.Cep    
+                },
+
+                Service = new Service
+                {
+                    Name = service.Name,
+                    Description = service.Description,
+                    PathFoto = service.PathFoto,
+                    Duration = service.Duration
+                },
+                Budget = userService.Budget,
+                DateTime = userService.DateTime,
+                Status = userService.Status,
+                Description = userService.Description
+            };
+
+        return View(query.ToList());
     }
 
     [HttpGet]
