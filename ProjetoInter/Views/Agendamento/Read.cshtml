@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento</title>
+     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <style>
+        .day-available {
+            background-color: #add8e6;
+            cursor: pointer;
+        }
+        .day-unavailable {
+            background-color: #f0f0f0;
+            cursor: not-allowed;
+        }
+     </style>
+</head>
+<body class="container-fluid">
+    <div class="container">
+        <h2 class="my-4">Novo Agendamento</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="d-flex flex-wrap" id="calendar">
+
+            </div>
+        </div>
+    </div>
+    <div class="mt-4" id="time-slots">
+        <h4>Horários Disponíveis</h4>
+        <div class="d-flex flex-wrap" id="times">
+
+        </div>
+    </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="scripts.js"></script>
+</body>
+</html>

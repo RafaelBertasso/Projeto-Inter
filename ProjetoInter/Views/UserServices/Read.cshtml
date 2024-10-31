@@ -1,19 +1,19 @@
-@model List<ProjetoInter.Models.Service>
+@model List<ProjetoInter.Models.UserService>
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Read</title>
+    <meta name="viewport" content="width=UserService, initial-scale=1.0">
+    <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body class="container-fluid">
-    <nav class="navbar navbar-expand-lg" id="navbar-comeco">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <i class="bi bi-list"></i><a href="/menu/read" class="navbar-brand"> Menu</a>
             </button>
@@ -33,7 +33,7 @@
         </div>
     </nav>
 
-    <h2>Services</h2>
+    <h2>User Services</h2>
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item active" aria-current="page">Read</li>
@@ -43,33 +43,30 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Nome</th>
+                <th>Orçamento</th>
+                <th>Horário</th>
+                <th>Status</th>
                 <th>Descrição</th>
-                <th>Fotos</th>
-                <th>Duração do serviço</th>
             </tr>
         </thead>
-        @foreach (var service in Model)
+        @foreach (var userServices in Model)
         {
             <tr>
-                <td>@service.Name</td>
-                <td>@service.Description</td>
-                <td>@service.PathFoto</td>
-                <td>@service.Duration</td>
+                <td>@userServices.Budget</td>
+                <td>@userServices.DateTime</td>
+                <td>@userServices.Status</td>
+                <td>@userServices.Description</td>
                 <td>
-                    <div class="btn-group" role="group">
-                        <a href="/service/update/@service.ServiceId" class="btn btn-sm btn-outline-success"><i
-                                class="bi-pencil-square"></i>Edit</a>
-                        <a href="/service/delete/@service.ServiceId" class="btn btn-sm btn-outline-danger"><i
-                                class="bi-trash"></i>Delete</a>
+                    <div class="btn-group">
+                        <a href="/userServices/update/@userServices.UserServiceId" class="btn btn-sm btn-outline-success"><i class="bi-pencil-square"></i>Edit</a>
+                        <a href="/userServices/delete/"></a>
                     </div>
                 </td>
             </tr>
         }
     </table>
     <div class="d-inline-flex gap-1">
-        <a href="/service/create" type="button" class="btn btn-primary" data-bs-toggle="button">Adicionar</a>
-
+        <a href="/userServices/create" type="button" class="btn btn-primary" data-bs-toggle="button">Adicionar</a>
     </div>
 </body>
 
