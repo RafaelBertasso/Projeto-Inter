@@ -14,29 +14,29 @@ public class UserServicesController : Controller
 
     public IActionResult Read()
     {
-        var query = from user in db.Users
-            join userService in db.UserServices on user.UserId equals userService.UserId
+        var query = from client in db.Clients
+            join userService in db.UserServices on client.ClientId equals userService.ClientId
             join service in db.Services on userService.ServiceId equals service.ServiceId
-        where user.UserId == userService.UserId
+        where client.UserId == userService.ClientId
         where service.ServiceId == userService.ServiceId
             select new UserService
             {
-                UserId = user.UserId,
-                User = new User
+                ClientId = client.ClientId,
+                Client = new Client
                 {
-                    Name = user.Name,
-                    Email = user.Email,
-                    Phone = user.Phone,
-                    DateOfBirth = user.DateOfBirth,
-                    Password = user.Password,
-                    Gender = user.Gender,
-                    Street = user.Street,
-                    City = user.City,
-                    State = user.State,
-                    District = user.District,
-                    Number = user.Number,
-                    Complement = user.Complement,
-                    Cep = user.Cep    
+                    Name = client.Name,
+                    Email = client.Email,
+                    Phone = client.Phone,
+                    DateOfBirth = client.DateOfBirth,
+                    Password = client.Password,
+                    Gender = client.Gender,
+                    Street = client.Street,
+                    City = client.City,
+                    State = client.State,
+                    District = client.District,
+                    Number = client.Number,
+                    Complement = client.Complement,
+                    Cep = client.Cep    
                 },
 
                 Service = new Service
@@ -46,7 +46,6 @@ public class UserServicesController : Controller
                     PathFoto = service.PathFoto,
                     Duration = service.Duration
                 },
-                Budget = userService.Budget,
                 DateTime = userService.DateTime,
                 Status = userService.Status,
                 Description = userService.Description
@@ -81,7 +80,6 @@ public class UserServicesController : Controller
     {
         UserService userService = db.UserServices.Single(e => e.UserServiceId == id);
 
-        userService.Budget = model.Budget;
         userService.DateTime = model.DateTime;
         userService.Status = model.Status;
         userService.Description = model.Description;

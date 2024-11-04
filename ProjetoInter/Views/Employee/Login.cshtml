@@ -52,29 +52,62 @@
         #link-conta {
             margin-top: 10px;
         }
+
+        .email-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .email-input {
+            width: 100%;
+            max-width: 250px;
+        }
+
+        .fixed-domain {
+            font-weight: bold;
+            white-space: nowrap;
+            margin-left: 5px;
+        }
     </style>
 </head>
 
 <body>
     <div class="login-container">
         <h2>Login</h2>
-        <form action="/user/login" method="post">
-        @if (ViewBag.Autenticado != null || ViewBag.Autenticado == false)
-        {
-        <div class="alert alert-danger">
-            Usuário não cadastrado ou senha inválida
-        </div>
-        }
-
-            <input type="email" name="Email" placeholder="E-mail" class="form-control" required> <br>
-            <input type="password" name="Password" placeholder="Senha" class="form-control" required> <br>
-            <div class="">
+        <form action="/employee/login" method="post">
+            @if (ViewBag.Autenticado != null || ViewBag.Autenticado == false)
+            {
+                <div class="alert alert-danger">
+                    Usuário não cadastrado ou senha inválida
+                </div>
+            }
+            <div class="email-container">
+                <input type="text" name="Email" placeholder="E-mail" class="form-control emial-input" required
+                    oninput="updateEmail()" id="emailInput">
+                <span class="fixed-domain">@@rppiscinas.com</span>
+            </div>
+            <div>
+                <input type="password" name="Password" placeholder="Senha" class="form-control" required>
+            </div>
+            <div class="col-md-12">
                 <button class="btn btn-primary w-100">Login</button>
             </div>
-            <div class="">
-                <a href="/user/create" class="btn btn-primary w-100" id="link-conta">Criar conta</a>
+            <div class="col-md-12">
+                <a href="/employee/create" class="btn btn-primary w-100" id="link-conta">Criar conta</a>
             </div>
         </form>
     </div>
+
+    <script>
+        function updateEmail() {
+            const input = document.getElementById("emailInput");
+            const fixedDomain = "@@rppiscinas.com"
+
+            if (input.value.includes("@@")) {
+                input.value = input.value.split("@@")[0]
+            }
+        }
+    </script>
 </body>
+
 </html>

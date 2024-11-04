@@ -1,3 +1,5 @@
+@model List<ProjetoInter.Models.Service>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,8 +37,12 @@
 
     <form action="/userServices/create" method="post" class="row g-3">
         <div class="col-12">
-            <label for="inputBudget" class="form-label">Orçamento</label>
-            <input type="text" placeholder="R$ Orçamento" name="Budget" class="form-control" id="inputBudget" required>
+            @foreach (var services in Model)
+            {
+                <select>
+                    <option value="1">@services.Name</option>
+                </select>
+            }
         </div>
         <div class="col-12">
             <label for="inputDateTime" class="form-label">Horário</label>
@@ -46,9 +52,10 @@
             <label for="inputStatus" class="form-label">Status</label>
             <select name="Status" id="specificSizeSelect" class="form-select" required>
                 <option selected>Escolha...</option>
-                <option value="3">Aguardando visita</option>
-                <option value="1">Em progresso</option>
-                <option value="2">Finalizada</option>
+                <option value="1">Aguardando visita</option>
+                <option value="2">Em progresso</option>
+                <option value="3">Finalizada</option>
+                <option value="4">Cancelado</option>
             </select>
         </div>
         <div class="col-12">
