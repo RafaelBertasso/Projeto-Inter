@@ -34,14 +34,14 @@ public class ClientController : Controller
     [HttpGet]
     public ActionResult Update(int id)
     {
-        Client client = db.Clients.Single(e => e.ClientId == id);
+        Client client = db.Clients.Single(e => e.UserId == id);
         return View(client);
     }
 
     [HttpPost]
     public ActionResult Update(int id, Client model)
     {
-        Client client = db.Clients.Single(e => e.ClientId == id);
+        Client client = db.Clients.Single(e => e.UserId == id);
 
         client.Name = model.Name;
         client.Gender = model.Gender;
@@ -63,7 +63,7 @@ public class ClientController : Controller
 
     public ActionResult Delete(int id)
     {
-        Client client = db.Clients.Single(e => e.ClientId == id);
+        Client client = db.Clients.Single(e => e.UserId == id);
         db.Remove(client);
         db.SaveChanges();
 
@@ -88,7 +88,7 @@ public class ClientController : Controller
         }
         else
         {
-            HttpContext.Session.SetInt32("userId", client.ClientId);
+            HttpContext.Session.SetInt32("userId", client.UserId);
             HttpContext.Session.SetString("userName", client.Name);
             return RedirectToAction("Read", "Service");
         }

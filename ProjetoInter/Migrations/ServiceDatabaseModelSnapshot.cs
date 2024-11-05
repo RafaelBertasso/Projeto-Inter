@@ -21,6 +21,43 @@ namespace Projeto_Inter.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("ProjetoInter.Models.ClientService", b =>
+                {
+                    b.Property<int>("ClientServiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClientServiceId"));
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("DateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ServiceName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.HasKey("ClientServiceId");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("ClientServices");
+                });
+
             modelBuilder.Entity("ProjetoInter.Models.Service", b =>
                 {
                     b.Property<int>("ServiceId")
@@ -47,7 +84,7 @@ namespace Projeto_Inter.Migrations
 
                     b.HasKey("ServiceId");
 
-                    b.ToTable("Services");
+                    b.ToTable("Service");
                 });
 
             modelBuilder.Entity("ProjetoInter.Models.User", b =>
@@ -57,11 +94,6 @@ namespace Projeto_Inter.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -77,44 +109,9 @@ namespace Projeto_Inter.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("User");
 
-                    b.HasDiscriminator().HasValue("User");
-
-                    b.UseTphMappingStrategy();
-                });
-
-            modelBuilder.Entity("ProjetoInter.Models.UserService", b =>
-                {
-                    b.Property<int>("UserServiceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserServiceId"));
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("UserServiceId");
-
-                    b.HasIndex("ClientId");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("UserServices");
+                    b.UseTptMappingStrategy();
                 });
 
             modelBuilder.Entity("ProjetoInter.Models.Client", b =>
@@ -128,9 +125,6 @@ namespace Projeto_Inter.Migrations
                     b.Property<string>("City")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ClientId")
-                        .HasColumnType("int");
 
                     b.Property<string>("Complement")
                         .HasColumnType("nvarchar(max)");
@@ -154,6 +148,9 @@ namespace Projeto_Inter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("ServiceId")
+                        .HasColumnType("int");
+
                     b.Property<string>("State")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -162,20 +159,19 @@ namespace Projeto_Inter.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasDiscriminator().HasValue("Client");
+                    b.HasIndex("ServiceId");
+
+                    b.ToTable("Client");
                 });
 
             modelBuilder.Entity("ProjetoInter.Models.Employee", b =>
                 {
                     b.HasBaseType("ProjetoInter.Models.User");
 
-                    b.Property<int>("EmployeeId")
-                        .HasColumnType("int");
-
-                    b.HasDiscriminator().HasValue("Employee");
+                    b.ToTable("Employee");
                 });
 
-            modelBuilder.Entity("ProjetoInter.Models.UserService", b =>
+            modelBuilder.Entity("ProjetoInter.Models.ClientService", b =>
                 {
                     b.HasOne("ProjetoInter.Models.Client", "Client")
                         .WithMany()
@@ -192,6 +188,33 @@ namespace Projeto_Inter.Migrations
                     b.Navigation("Client");
 
                     b.Navigation("Service");
+                });
+
+            modelBuilder.Entity("ProjetoInter.Models.Client", b =>
+                {
+                    b.HasOne("ProjetoInter.Models.Service", null)
+                        .WithMany("Clients")
+                        .HasForeignKey("ServiceId");
+
+                    b.HasOne("ProjetoInter.Models.User", null)
+                        .WithOne()
+                        .HasForeignKey("ProjetoInter.Models.Client", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjetoInter.Models.Employee", b =>
+                {
+                    b.HasOne("ProjetoInter.Models.User", null)
+                        .WithOne()
+                        .HasForeignKey("ProjetoInter.Models.Employee", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProjetoInter.Models.Service", b =>
+                {
+                    b.Navigation("Clients");
                 });
 #pragma warning restore 612, 618
         }

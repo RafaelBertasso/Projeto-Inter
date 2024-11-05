@@ -1,4 +1,4 @@
-@model ProjetoInter.Models.Employee
+@model ProjetoInter.Models.User
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +22,7 @@
         </ol>
     </nav>
 
-    <form action="/employee/update/@Model.EmployeeId" method="post" class="row g-3">
+    <form action="/employee/update/@Model.UserId" method="post" class="row g-3">
         <div class="col-md-12">
             <label for="inputName" class="form-label">Nome</label>
             <input type="text" class="form-control" name="Name" id="inputName" value="@Model.Name" required>

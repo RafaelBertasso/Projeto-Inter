@@ -35,14 +35,14 @@ public class EmployeeController : Controller
     [HttpGet]
     public ActionResult Update(int id)
     {
-        Employee employee = db.Employees.Single(e => e.EmployeeId == id);
+        Employee employee = db.Employees.Single(e => e.UserId == id);
         return View(employee);
     }
 
     [HttpPost]
     public ActionResult Update(int id, Employee model)
     {
-        Employee employee = db.Employees.Single(e => e.EmployeeId == id);
+        Employee employee = db.Employees.Single(e => e.UserId == id);
 
         employee.Name = model.Name;
         employee.Email = model.Email;
@@ -54,7 +54,7 @@ public class EmployeeController : Controller
 
     public ActionResult Delete(int id)
     {
-        Employee employee = db.Employees.Single(e => e.EmployeeId == id);
+        Employee employee = db.Employees.Single(e => e.UserId == id);
         db.Remove(employee);
         db.SaveChanges();
 
@@ -79,7 +79,7 @@ public class EmployeeController : Controller
         }
         else
         {
-            HttpContext.Session.SetInt32("userId", employee.EmployeeId);
+            HttpContext.Session.SetInt32("userId", employee.UserId);
             HttpContext.Session.SetString("userName", employee.Name);
             return RedirectToAction("Read", "Service");
         }

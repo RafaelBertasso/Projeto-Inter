@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ProjetoInter.Models;
 
+[Table("Client")]
 public class Client : User
 {
-    public int ClientId { get; set; }
     public string Phone { get; set; }
     public string DateOfBirth { get; set; }
      public string Gender { get; set; }
@@ -14,5 +17,5 @@ public class Client : User
     public string State { get; set; }
     public string Cep { get; set; }
 
-    // public ICollection<Service> Services { get; set; } = new List<Service>();
+    //public ICollection<User> Users { get; set; } = new List<User>();
 }

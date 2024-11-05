@@ -22,6 +22,18 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbmRhbWVudG9cUmVhZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/ClientServices/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2VydmljZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/ClientServices/Read.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2VydmljZXNcUmVhZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/ClientServices/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2VydmljZXNcVXBkYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Client/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -72,16 +84,4 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Service/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2VydmljZVxVcGRhdGUuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/UserServices/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNlcnZpY2VzXENyZWF0ZS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/UserServices/Read.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNlcnZpY2VzXFJlYWQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/UserServices/Update.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclNlcnZpY2VzXFVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

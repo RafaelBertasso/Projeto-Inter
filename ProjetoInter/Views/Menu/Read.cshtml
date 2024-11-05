@@ -45,7 +45,9 @@
         }
 
         #botoes {
+            width: 100%;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
             align-items: center;
             margin-top: 20px;
@@ -59,11 +61,19 @@
             text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
+            flex: 1;
+            
         }
 
         #botoes a:hover {
             background-color: #5a9bd5;
             border-color: #5a9bd5;
+        }
+
+        .div-botao {
+            display: flex;
+            width: 100%;
+            
         }
     </style>
 </head>
@@ -73,8 +83,14 @@
         <div id="interna">
             <h2>Gerenciar</h2>
             <div id="botoes">
-                <a href="/client/read" class="btn btn-primary">Clientes</a>
-                <a href="/service/read" class="btn btn-primary">Serviços</a>
+                <div class="div-botao">
+                    <a href="/client/read" class="btn btn-primary">Clientes</a>
+                    <a href="/service/read" class="btn btn-primary">Serviços</a>
+                </div>
+                <div class="div-botao">
+                    <a href="/service/read" class="btn btn-primary">Funcionários</a>
+                    <a href="/service/read" class="btn btn-primary">Agendamentos</a>
+                </div>
             </div>
         </div>
     </div>

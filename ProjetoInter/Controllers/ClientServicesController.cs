@@ -3,11 +3,11 @@ using ProjetoInter.Models;
 
 namespace ProjetoInter.Controllers;
 
-public class UserServicesController : Controller
+public class ClientServicesController : Controller
 {
     private readonly ServiceDatabase db;
 
-    public UserServicesController(ServiceDatabase db)
+    public ClientServicesController(ServiceDatabase db)
     {
         this.db = db;
     }
@@ -15,13 +15,13 @@ public class UserServicesController : Controller
     public IActionResult Read()
     {
         var query = from client in db.Clients
-            join userService in db.UserServices on client.ClientId equals userService.ClientId
-            join service in db.Services on userService.ServiceId equals service.ServiceId
-        where client.UserId == userService.ClientId
-        where service.ServiceId == userService.ServiceId
-            select new UserService
+            join clientService in db.ClientServices on client.UserId equals clientService.ClientId
+            join service in db.Services on clientService.ServiceId equals service.ServiceId
+        where client.UserId == clientService.ClientId
+        where service.ServiceId == clientService.ServiceId
+            select new ClientService
             {
-                ClientId = client.ClientId,
+                ClientId = client.UserId,
                 Client = new Client
                 {
                     Name = client.Name,
@@ -46,9 +46,9 @@ public class UserServicesController : Controller
                     PathFoto = service.PathFoto,
                     Duration = service.Duration
                 },
-                DateTime = userService.DateTime,
-                Status = userService.Status,
-                Description = userService.Description
+                DateTime = clientService.DateTime,
+                Status = clientService.Status,
+                Description = clientService.Description
             };
 
         return View(query.ToList());
@@ -61,9 +61,9 @@ public class UserServicesController : Controller
     }
 
     [HttpPost]
-    public ActionResult Create(UserService model)
+    public ActionResult Create(ClientService model)
     {
-        db.UserServices.Add(model);
+        db.ClientServices.Add(model);
         db.SaveChanges();
         return RedirectToAction("Read");
     }
@@ -71,18 +71,18 @@ public class UserServicesController : Controller
     [HttpGet]
     public ActionResult Update(int id)
     {
-        UserService userService = db.UserServices.Single(e => e.UserServiceId == id);
-        return View(userService);
+        ClientService clientService = db.ClientServices.Single(e => e.ClientServiceId == id);
+        return View(clientService);
     }
 
     [HttpPost]
-    public ActionResult Update(int id, UserService model)
+    public ActionResult Update(int id, ClientService model)
     {
-        UserService userService = db.UserServices.Single(e => e.UserServiceId == id);
+        ClientService clientService = db.ClientServices.Single(e => e.ClientServiceId == id);
 
-        userService.DateTime = model.DateTime;
-        userService.Status = model.Status;
-        userService.Description = model.Description;
+        clientService.DateTime = model.DateTime;
+        clientService.Status = model.Status;
+        clientService.Description = model.Description;
 
         db.SaveChanges();
         return RedirectToAction("Read");
@@ -90,8 +90,8 @@ public class UserServicesController : Controller
 
     public ActionResult Delete(int id)
     {
-        UserService userService = db.UserServices.Single(e => e.UserServiceId == id);
-        db.Remove(userService);
+        ClientService clientService = db.ClientServices.Single(e => e.ClientServiceId == id);
+        db.Remove(clientService);
         db.SaveChanges();
 
         return RedirectToAction("Read");

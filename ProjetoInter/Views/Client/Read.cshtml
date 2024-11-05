@@ -29,7 +29,7 @@
                         <a href="/service/read" class="nav-link active" aria-current="page">Serviços</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/userServices/read" class="nav-link active" aria-current="page">Agendamento</a>
+                        <a href="/clientServices/read" class="nav-link active" aria-current="page">Agendamento</a>
                     </li>
                 </ul>
             </div>
@@ -77,9 +77,9 @@
                 <td>@client.State</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="/client/update/@client.ClientId" class="btn btn-sm btn-outline-success"><i
+                        <a href="/client/update/@client.UserId" class="btn btn-sm btn-outline-success"><i
                                 class="bi-pencil-square"></i>Edit</a>
-                        <a href="/client/delete/@client.ClientId" class="btn btn-sm btn-outline-danger"><i
+                        <a href="/client/delete/@client.UserId" class="btn btn-sm btn-outline-danger"><i
                                 class="bi-trash"></i>Delete</a>
                     </div>
                 </td>

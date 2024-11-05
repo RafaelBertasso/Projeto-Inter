@@ -1,5 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ProjetoInter.Models;
 
-public class Employee : User{
-    public int EmployeeId { get; set; }
+[Table("Employee")]
+public class Employee : User
+{
+    //public ICollection<User> Users { get; set; } = new List<User>();
 }

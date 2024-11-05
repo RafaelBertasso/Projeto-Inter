@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace ProjetoInter.Models;
 
-public class UserService
+public class ClientService
 {
-    public int UserServiceId { get; set; }
+    public int ClientServiceId { get; set; }
     public int ClientId { get; set; }
     public int ServiceId { get; set; }
     public DateTime DateTime { get; set; }

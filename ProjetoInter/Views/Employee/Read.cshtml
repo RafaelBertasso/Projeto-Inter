@@ -29,7 +29,7 @@
                         <a href="/service/read" class="nav-link active" aria-current="page">Serviços</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/userServices/read" class="nav-link active" aria-current="page">Agendamento</a>
+                        <a href="/clientServices/read" class="nav-link active" aria-current="page">Agendamento</a>
                     </li>
                 </ul>
             </div>
@@ -57,9 +57,9 @@
                 <td>@employee.Email</td>
                 <td>
                     <div class="btn-group" role="group">
-                        <a href="/employee/update/@employee.EmployeeId" class="btn btn-sm btn-outline-success"><i
+                        <a href="/employee/update/@employee.UserId" class="btn btn-sm btn-outline-success"><i
                                 class="bi-pencil-square"></i>Edit</a>
-                        <a href="/employee/delete/@employee.EmployeeId" class="btn btn-sm btn-outline-danger"><i
+                        <a href="/employee/delete/@employee.UserId" class="btn btn-sm btn-outline-danger"><i
                                 class="bi-trash"></i>Delete</a>
                     </div>
                 </td>
