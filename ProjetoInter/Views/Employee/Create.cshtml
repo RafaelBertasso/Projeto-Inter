@@ -64,10 +64,19 @@
             <input type="password" placeholder="Senha" name="Password" class="form-control" id="inputPassword" required>
         </div>
         <div class="col-md-6">
-            <button class="btn btn-primary w-100">Salvar</button>
+            <button class="btn btn-primary w-100">Criar</button>
         </div>
         <div class="col-md-6">
-            <a href="/employee/read" class="btn btn-outline-secondary w-100">Voltar</a>
+            @{
+                if (ViewBag.IsLoggedIn)
+                {
+                    <a href="/employee/read" class="btn btn-outline-secondary w-100">Voltar</a>
+                }
+                else
+                {
+                    <a href="/employee/login">Voltar</a>
+                }
+            }
         </div>
     </form>
 

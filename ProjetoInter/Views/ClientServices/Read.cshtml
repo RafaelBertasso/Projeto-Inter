@@ -37,6 +37,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <th>Cliente</th>
                 <th>Horário</th>
                 <th>Status</th>
                 <th>Descrição</th>
@@ -45,6 +46,7 @@
         @foreach (var clientServices in Model)
         {
             <tr>
+                <td>@clientServices.Client.Name</td>
                 <td>@clientServices.DateTime</td>
                 <td>@clientServices.Status</td>
                 <td>@clientServices.Description</td>

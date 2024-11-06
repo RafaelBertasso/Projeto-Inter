@@ -5,14 +5,14 @@ namespace ProjetoInter.Controllers;
 
 public class EmployeeController : Controller
 {
-   private readonly ServiceDatabase db;
+    private readonly ServiceDatabase db;
 
-   public EmployeeController(ServiceDatabase db)
-   {
+    public EmployeeController(ServiceDatabase db)
+    {
         this.db = db;
-   }
+    }
 
-   
+
     public IActionResult Read()
     {
         return View(db.Employees.ToList());
@@ -21,6 +21,8 @@ public class EmployeeController : Controller
     [HttpGet]
     public ActionResult Create()
     {
+        bool isLoggedIn = HttpContext.Session.GetInt32("UserId") != null;
+        ViewBag.isLoggedIn = isLoggedIn;
         return View();
     }
 
@@ -81,7 +83,7 @@ public class EmployeeController : Controller
         {
             HttpContext.Session.SetInt32("userId", employee.UserId);
             HttpContext.Session.SetString("userName", employee.Name);
-            return RedirectToAction("Read", "Service");
+            return RedirectToAction("Read", "Menu");
         }
-    } 
+    }
 }

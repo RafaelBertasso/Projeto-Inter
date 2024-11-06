@@ -16,6 +16,4 @@ public class Client : User
     public string? Complement { get; set; }
     public string State { get; set; }
     public string Cep { get; set; }
-
-    //public ICollection<User> Users { get; set; } = new List<User>();
 }

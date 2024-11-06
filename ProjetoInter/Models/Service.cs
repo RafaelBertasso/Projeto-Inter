@@ -13,5 +13,4 @@ public class Service
     public string PathFoto { get; set; }
     public string Duration { get; set; }
 
-    public ICollection<Client> Clients { get; set; } = new List<Client>();
 }

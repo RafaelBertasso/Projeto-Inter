@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProjetoInter.Models;
 
 namespace ProjetoInter.Controllers;
@@ -15,57 +16,97 @@ public class ClientServicesController : Controller
     public IActionResult Read()
     {
         var query = from client in db.Clients
-            join clientService in db.ClientServices on client.UserId equals clientService.ClientId
-            join service in db.Services on clientService.ServiceId equals service.ServiceId
-        where client.UserId == clientService.ClientId
-        where service.ServiceId == clientService.ServiceId
-            select new ClientService
-            {
-                ClientId = client.UserId,
-                Client = new Client
-                {
-                    Name = client.Name,
-                    Email = client.Email,
-                    Phone = client.Phone,
-                    DateOfBirth = client.DateOfBirth,
-                    Password = client.Password,
-                    Gender = client.Gender,
-                    Street = client.Street,
-                    City = client.City,
-                    State = client.State,
-                    District = client.District,
-                    Number = client.Number,
-                    Complement = client.Complement,
-                    Cep = client.Cep    
-                },
+                    join clientService in db.ClientServices on client.UserId equals clientService.ClientId
+                    join service in db.Services on clientService.ServiceId equals service.ServiceId
+                    where client.UserId == clientService.ClientId
+                    where service.ServiceId == clientService.ServiceId
+                    select new ClientService
+                    {
+                        ClientId = client.UserId,
+                        Client = new Client
+                        {
+                            Name = client.Name,
+                            Email = client.Email,
+                            Phone = client.Phone,
+                            DateOfBirth = client.DateOfBirth,
+                            Password = client.Password,
+                            Gender = client.Gender,
+                            Street = client.Street,
+                            City = client.City,
+                            State = client.State,
+                            District = client.District,
+                            Number = client.Number,
+                            Complement = client.Complement,
+                            Cep = client.Cep
+                        },
 
-                Service = new Service
-                {
-                    Name = service.Name,
-                    Description = service.Description,
-                    PathFoto = service.PathFoto,
-                    Duration = service.Duration
-                },
-                DateTime = clientService.DateTime,
-                Status = clientService.Status,
-                Description = clientService.Description
-            };
+                        Service = new Service
+                        {
+                            Name = service.Name,
+                            Description = service.Description,
+                            PathFoto = service.PathFoto,
+                            Duration = service.Duration
+                        },
+                        DateTime = clientService.DateTime,
+                        Status = clientService.Status,
+                        Description = clientService.Description
+                    };
 
         return View(query.ToList());
     }
 
-    [HttpGet]
-    public ActionResult Create()
+    private List<TimeSpan> AvaliableTimes()
     {
-        return View();
+        var times = new List<TimeSpan>();
+        TimeSpan startTime = TimeSpan.FromHours(8);
+        TimeSpan endTime = TimeSpan.FromHours(17.5);
+
+        while (startTime <= endTime)
+        {
+            times.Add(startTime);
+            startTime = startTime.Add(TimeSpan.FromMinutes(30));
+        }
+        return times;
+    }
+
+    [HttpGet]
+    public ActionResult Create(DateTime? date)
+    {
+        var model = new ClientService();
+
+        ViewBag.Services = db.Services.ToList();
+
+        if (date.HasValue)
+        {
+            var allTimes = AvaliableTimes();
+
+            var occupiedTimes = db.ClientServices
+            .Where(cs => cs.DateTime.Date == date.Value.Date)
+            .Select(cs => cs.DateTime.TimeOfDay)
+            .ToList();
+
+            ViewBag.AvaliableTimes = allTimes.Except(occupiedTimes).ToList();
+        }
+        else
+        {
+            ViewBag.AvaliableTimes = new List<TimeSpan>();
+        }
+
+        ViewBag.SelectedDate = date;
+        return View(model);
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public ActionResult Create(ClientService model)
     {
-        db.ClientServices.Add(model);
-        db.SaveChanges();
-        return RedirectToAction("Read");
+        if (ModelState.IsValid)
+        {
+            db.ClientServices.Add(model);
+            db.SaveChanges();
+            return RedirectToAction("Read");
+        }
+        return Create(model.DateTime);
     }
 
     [HttpGet]
