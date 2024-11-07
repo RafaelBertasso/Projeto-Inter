@@ -20,13 +20,26 @@ public class ClientController : Controller
     [HttpGet]
     public ActionResult Create()
     {
-        bool isLoggedIn = HttpContext.Session.GetInt32("UserId") != null;
-        ViewBag.isLoggedIn = isLoggedIn;
         return View();
     }
 
     [HttpPost]
     public ActionResult Create(Client model)
+    {
+        db.Clients.Add(model);
+        db.SaveChanges();
+        return RedirectToAction("Read", "Client");
+    }
+
+
+    [HttpGet]
+    public ActionResult CreateLogin()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult CreateLogin(Client model)
     {
         db.Clients.Add(model);
         db.SaveChanges();
@@ -94,11 +107,5 @@ public class ClientController : Controller
             HttpContext.Session.SetString("userName", client.Name);
             return RedirectToAction("Read", "ClientServices");
         }
-    }
-
-    public ActionResult Logout()
-    {
-        HttpContext.Session.Clear();
-        return RedirectToAction("Login", "Client");
     }
 }

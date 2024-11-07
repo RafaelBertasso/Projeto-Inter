@@ -18,10 +18,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Rafael\FATEC User\POO\Projeto-Rio-Preto-Piscinas\ProjetoInter
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Agendamento/Read.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWdlbmRhbWVudG9cUmVhZC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/ClientServices/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2VydmljZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,12 +26,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2VydmljZXNcUmVhZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/ClientServices/ReadEmployee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2VydmljZXNcUmVhZEVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/ClientServices/Update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50U2VydmljZXNcVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Client/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Client/CreateLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50XENyZWF0ZUxvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Client/Login.cshtml]
@@ -52,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Employee/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Employee/CreateLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW1wbG95ZWVcQ3JlYXRlTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Rafael/FATEC User/POO/Projeto-Rio-Preto-Piscinas/ProjetoInter/Views/Employee/Login.cshtml]

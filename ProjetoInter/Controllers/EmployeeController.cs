@@ -21,13 +21,25 @@ public class EmployeeController : Controller
     [HttpGet]
     public ActionResult Create()
     {
-        bool isLoggedIn = HttpContext.Session.GetInt32("UserId") != null;
-        ViewBag.isLoggedIn = isLoggedIn;
         return View();
     }
 
     [HttpPost]
     public ActionResult Create(Employee model)
+    {
+        db.Employees.Add(model);
+        db.SaveChanges();
+        return RedirectToAction("Read");
+    }
+
+    [HttpGet]
+    public ActionResult CreateLogin()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public ActionResult CreateLogin(Employee model)
     {
         db.Employees.Add(model);
         db.SaveChanges();
@@ -70,7 +82,7 @@ public class EmployeeController : Controller
     }
 
     [HttpPost]
-    public ActionResult Login(EmployeeViewModel model)
+    public ActionResult Login(EmployeeViewModel model, string returnUrl)
     {
         var employee = db.Employees.SingleOrDefault(e => e.Email == model.Email && e.Password == model.Password);
 

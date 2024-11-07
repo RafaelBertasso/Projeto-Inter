@@ -55,11 +55,58 @@ public class ClientServicesController : Controller
         return View(query.ToList());
     }
 
-    private List<TimeSpan> AvaliableTimes()
+    public ActionResult ReadEmployee()
+    {
+        var query = from client in db.Clients
+                    join clientService in db.ClientServices on client.UserId equals clientService.ClientId
+                    join service in db.Services on clientService.ServiceId equals service.ServiceId
+                    where client.UserId == clientService.ClientId
+                    where service.ServiceId == clientService.ServiceId
+                    select new ClientService
+                    {
+                        ClientId = client.UserId,
+                        Client = new Client
+                        {
+                            Name = client.Name,
+                            Email = client.Email,
+                            Phone = client.Phone,
+                            DateOfBirth = client.DateOfBirth,
+                            Password = client.Password,
+                            Gender = client.Gender,
+                            Street = client.Street,
+                            City = client.City,
+                            State = client.State,
+                            District = client.District,
+                            Number = client.Number,
+                            Complement = client.Complement,
+                            Cep = client.Cep
+                        },
+
+                        Service = new Service
+                        {
+                            Name = service.Name,
+                            Description = service.Description,
+                            PathFoto = service.PathFoto,
+                            Duration = service.Duration
+                        },
+                        DateTime = clientService.DateTime,
+                        Status = clientService.Status,
+                        Description = clientService.Description
+                    };
+
+        return View(query.ToList());
+    }
+
+    private List<TimeSpan> AvaliableTimes(DateTime date)
     {
         var times = new List<TimeSpan>();
         TimeSpan startTime = TimeSpan.FromHours(8);
         TimeSpan endTime = TimeSpan.FromHours(17.5);
+
+        if (date.DayOfWeek == DayOfWeek.Saturday || date.DayOfWeek == DayOfWeek.Sunday)
+        {
+            return times;
+        }
 
         while (startTime <= endTime)
         {
@@ -78,7 +125,7 @@ public class ClientServicesController : Controller
 
         if (date.HasValue)
         {
-            var allTimes = AvaliableTimes();
+            var allTimes = AvaliableTimes(date.Value);
 
             var occupiedTimes = db.ClientServices
             .Where(cs => cs.DateTime.Date == date.Value.Date)
@@ -101,6 +148,22 @@ public class ClientServicesController : Controller
     public ActionResult Create(ClientService model)
     {
         if (ModelState.IsValid)
+        {
+            if (model.DateTime.DayOfWeek == DayOfWeek.Saturday || model.DateTime.DayOfWeek == DayOfWeek.Sunday)
+            {
+                ModelState.AddModelError("", "Não é possível agendar nos finais de semana");
+                return Create(model.DateTime);
+            }
+
+            var existsAppointment = db.ClientServices.Any(cs => cs.DateTime == model.DateTime);
+
+            if (existsAppointment)
+            {
+                ModelState.AddModelError("", "O horário selecionado já está ocupado");
+                return Create(model.DateTime);
+            }
+        }
+        else
         {
             db.ClientServices.Add(model);
             db.SaveChanges();
