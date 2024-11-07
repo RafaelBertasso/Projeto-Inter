@@ -5,4 +5,4 @@ namespace ProjetoInter.Models;
 
 [Table("Employee")]
 public class Employee : User
-{}
+{ }
