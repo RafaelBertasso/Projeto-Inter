@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Projeto_Inter.Migrations
 {
     [DbContext(typeof(ServiceDatabase))]
-    [Migration("20241106004607_ExcludeServiceName")]
-    partial class ExcludeServiceName
+    [Migration("20241107120906_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,6 @@ namespace Projeto_Inter.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ServiceId")

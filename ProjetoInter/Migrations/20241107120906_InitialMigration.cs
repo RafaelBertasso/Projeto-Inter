@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Projeto_Inter.Migrations
 {
     /// <inheritdoc />
-    public partial class Update : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -56,17 +56,11 @@ namespace Projeto_Inter.Migrations
                     Number = table.Column<int>(type: "int", nullable: false),
                     Complement = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     State = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Cep = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ServiceId = table.Column<int>(type: "int", nullable: true)
+                    Cep = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Client", x => x.UserId);
-                    table.ForeignKey(
-                        name: "FK_Client_Service_ServiceId",
-                        column: x => x.ServiceId,
-                        principalTable: "Service",
-                        principalColumn: "ServiceId");
                     table.ForeignKey(
                         name: "FK_Client_User_UserId",
                         column: x => x.UserId,
@@ -101,9 +95,8 @@ namespace Projeto_Inter.Migrations
                     ClientId = table.Column<int>(type: "int", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false),
                     DateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ServiceName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -121,11 +114,6 @@ namespace Projeto_Inter.Migrations
                         principalColumn: "ServiceId",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Client_ServiceId",
-                table: "Client",
-                column: "ServiceId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ClientServices_ClientId",

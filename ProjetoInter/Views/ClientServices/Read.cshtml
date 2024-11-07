@@ -44,7 +44,6 @@
                 <th>Cliente</th>
                 <th>Horário</th>
                 <th>Status</th>
-                <th>Descrição</th>
             </tr>
         </thead>
         @foreach (var clientServices in Model)
@@ -53,7 +52,6 @@
                 <td>@clientServices.Client.Name</td>
                 <td>@clientServices.DateTime</td>
                 <td>@clientServices.Status</td>
-                <td>@clientServices.Description</td>
                 <td>
                     <div class="btn-group">
                         <a href="/clientServices/update/@clientServices.ClientServiceId"

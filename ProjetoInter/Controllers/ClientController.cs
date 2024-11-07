@@ -28,7 +28,7 @@ public class ClientController : Controller
     {
         db.Clients.Add(model);
         db.SaveChanges();
-        return RedirectToAction("Read", "Client");
+        return RedirectToAction("ReadEmployee", "ClientServices");
     }
 
 

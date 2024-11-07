@@ -17,7 +17,7 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/clientServices/read">Client Services</a></li>
+            <li class="breadcrumb-item"><a href="/clientServices/readEmployee">Client Services</a></li>
             <li class="breadcrumb-item active" aria-current="page">Create</li>
         </ol>
     </nav>
@@ -26,7 +26,7 @@
         <div class="col-12 form-group">
             <label for="Date" class="control-label form-label">Data</label>
             <input type="date" id="Date" name="Date" class="form-control" placeholder="Selecione uma data"
-                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" required onchange="this.form.submit()">
+                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" required onchange="this.form.submit()" >
         </div>
         <div class="col-12 form-group">
             <label asp-for="ServiceId" class="control-label form-label">Serviço</label>
@@ -55,25 +55,25 @@
                 }
             </select>
         </div>
-        @* <div class="col-12">
-        <label for="inputStatus" class="form-label">Status</label>
-        <select name="Status" id="specificSizeSelect" class="form-select" required>
-        <option selected>Escolha...</option>
-        <option value="1">Aguardando visita</option>
-        <option value="2">Em progresso</option>
-        <option value="3">Finalizada</option>
-        <option value="4">Cancelado</option>
-        </select>
-        </div> *@
         <div class="col-12">
-            <label for="inputDescription" class="form-label">Observações (opcional) </label>
-            <input type="text" placeholder="Observações" name="Description" class="form-control" id="inputDescription"0>
+            <label for="inputStatus" class="form-label">Status</label>
+            <select name="Status" id="specificSizeSelect" class="form-select" required>
+                <option selected>Escolha...</option>
+                <option value="1">Aguardando visita</option>
+                <option value="2">Em progresso</option>
+                <option value="3">Finalizada</option>
+                <option value="4">Cancelado</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label for="inputDescription" class="form-label">Observações (opcional)</label>
+            <input type="text" placeholder="Observações" name="Description" class="form-control" id="inputDescription">
         </div>
         <div class="col-md-6">
             <button type="submit" class="btn btn-primary w-100">Agendar</button>
         </div>
         <div class="col-md-6">
-            <a href="/clientServices/read" class="btn btn-outline-secondary w-100">Voltar</a>
+            <a href="/clientServices/readEmployee" class="btn btn-outline-secondary w-100">Voltar</a>
         </div>
     </form>
 
