@@ -13,23 +13,23 @@
 </head>
 
 <body class="container-fluid">
-    <h2>Create</h2>
+    <h2>Criar</h2>
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/clientServices/read">Client Services</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create</li>
+            <li class="breadcrumb-item"><a href="/clientServices/read">Agendamento</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Criar</li>
         </ol>
     </nav>
 
-    <form action="/clientServices/create" method="get" class="row g-3" asp-action="Create">
+    <form action="/clientServices/loadTime" method="post" class="row g-3">
         <div class="col-12 form-group">
             <label for="Date" class="control-label form-label">Data</label>
-            <input type="date" id="Date" name="Date" class="form-control" placeholder="Selecione uma data"
-                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" required onchange="this.form.submit()">
+            <input type="date" id="Date" name="DateTime" class="form-control" placeholder="Selecione uma data" asp-for="DateTime"
+                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
         </div>
         <div class="col-12 form-group">
-            <label asp-for="ServiceId" class="control-label form-label">Serviço</label>
+            <label class="control-label form-label">Serviço</label>
             <select asp-for="ServiceId" name="ServiceId" id="ServiceId" class="form-select" required>
                 <option selected>Selecione um serviço</option>
                 @foreach (var service in ViewBag.Services)
@@ -38,14 +38,12 @@
                 }
             </select>
         </div>
-    </form>
-    <form asp-action="Create" method="post" class="row g-3">
         <input type="hidden" asp-for="ServiceId" value="@ViewBag.ServiceId">
-        <input type="hidden" asp-for="DateTime" value="@ViewBag.SelectedDate">
+        <input type="hidden" asp-for="UserId" value="@ViewBag.UserId">
 
         <div class="col-12 form-group">
             <label for="Time" class="control-label form-label">Horário</label>
-            <select name="Time" id="Time" class="form-select" required>
+            <select name="Time" id="Time" class="form-select" required asp-for="Time">
                 <option selected>Selecione um horário</option>
                 @foreach (var time in ViewBag.AvaliableTimes)
                 {
@@ -67,10 +65,10 @@
         </div> *@
         <div class="col-12">
             <label for="inputDescription" class="form-label">Observações (opcional) </label>
-            <input type="text" placeholder="Observações" name="Description" class="form-control" id="inputDescription"0>
+            <input type="text" placeholder="Observações" name="Description" class="form-control" id="inputDescription" asp-for="Description">
         </div>
         <div class="col-md-6">
-            <button type="submit" class="btn btn-primary w-100">Agendar</button>
+            <button type="submit" class="btn btn-primary w-100" formaction="/clientServices/create" formmethod="post">Agendar</button>
         </div>
         <div class="col-md-6">
             <a href="/clientServices/read" class="btn btn-outline-secondary w-100">Voltar</a>

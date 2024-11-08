@@ -13,20 +13,22 @@
 </head>
 
 <body class="container-fluid">
-    <h2>Create</h2>
+    <h2>Criar</h2>
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/clientServices/readEmployee">Client Services</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create</li>
+            <li class="breadcrumb-item"><a href="/clientServices/readEmployee">Agendamento</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Criar</li>
         </ol>
     </nav>
 
-    <form action="/clientServices/create" method="get" class="row g-3" asp-action="Create">
+    <form action="/clientServices/create" method="get" class="row g-3">
         <div class="col-12 form-group">
             <label for="Date" class="control-label form-label">Data</label>
             <input type="date" id="Date" name="Date" class="form-control" placeholder="Selecione uma data"
-                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" required onchange="this.form.submit()" >
+                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" required onchange="this.form.submit()">
+        </div>
+        <div>
         </div>
         <div class="col-12 form-group">
             <label asp-for="ServiceId" class="control-label form-label">Serviço</label>
@@ -38,8 +40,6 @@
                 }
             </select>
         </div>
-    </form>
-    <form asp-action="Create" method="post" class="row g-3">
         <input type="hidden" asp-for="ServiceId" value="@ViewBag.ServiceId">
         <input type="hidden" asp-for="DateTime" value="@ViewBag.SelectedDate">
 

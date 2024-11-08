@@ -1,5 +1,3 @@
-@model ProjetoInter.Models.ClientService
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +52,11 @@
         #link-conta {
             margin-top: 10px;
         }
+
+        .email-container {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -68,9 +71,13 @@
                 </div>
             }
 
-            <input type="email" name="Email" placeholder="E-mail" class="form-control" required>
-            <input type="password" name="Password" placeholder="Senha" class="form-control" required> <br>
+            <div class="email-container">
+                <input type="email" name="Email" placeholder="E-mail" class="form-control" required>
+            </div>
             <div>
+                <input type="password" name="Password" placeholder="Senha" class="form-control" required>
+            </div>
+            <div class="col-md-12">
                 <button type="submit" class="btn btn-primary w-100">Login</button>
             </div>
             <div class="">

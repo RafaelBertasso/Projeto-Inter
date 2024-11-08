@@ -82,7 +82,7 @@ public class EmployeeController : Controller
     }
 
     [HttpPost]
-    public ActionResult Login(EmployeeViewModel model, string returnUrl)
+    public ActionResult Login(EmployeeViewModel model)
     {
         var employee = db.Employees.SingleOrDefault(e => e.Email == model.Email && e.Password == model.Password);
 

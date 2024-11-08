@@ -1,0 +1,29 @@
+@* @model ProjetoInter.Models.ClientService
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolher Serviços</title>
+</head>
+
+<body>
+    <h2>Escolha de Serviços</h2>
+
+    <form action="" method="post">
+        <div class="col-12 form-group">
+            <label asp-for="ServiceId" class="control-label form-label">Serviço</label>
+            <select asp-for="ServiceId" name="ServiceId" id="ServiceId" class="form-select" required>
+                <option selected>Selecione um serviço</option>
+                @foreach (var service in ViewBag.Services)
+                {
+                    <option value="@service.ServiceId">@service.Name</option>
+                }
+            </select>
+        </div>
+    </form>
+</body>
+
+</html> *@
