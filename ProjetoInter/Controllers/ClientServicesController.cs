@@ -16,10 +16,12 @@ public class ClientServicesController : Controller
 
     public IActionResult Read()
     {
+        var userId = HttpContext.Session.GetInt32("userId");
+
         var query = from client in db.Clients
                     join clientService in db.ClientServices on client.UserId equals clientService.ClientId
                     join service in db.Services on clientService.ServiceId equals service.ServiceId
-                    where client.UserId == clientService.ClientId
+                    where client.UserId == userId.Value
                     where service.ServiceId == clientService.ServiceId
                     select new ClientService
                     {
@@ -192,65 +194,9 @@ public class ClientServicesController : Controller
     }
 
     [HttpGet]
-    public ActionResult CreateEmployee(DateTime? date)
-    {
-        var model = new ClientService();
-
-        ViewBag.Services = db.Services.ToList();
-
-        if (date.HasValue)
-        {
-            var allTimes = AvaliableTimes(date.Value);
-
-            var occupiedTimes = db.ClientServices
-            .Where(cs => cs.DateTime.Date == date.Value.Date)
-            .Select(cs => cs.DateTime.TimeOfDay)
-            .ToList();
-
-            ViewBag.AvaliableTimes = allTimes.Except(occupiedTimes).ToList();
-        }
-        else
-        {
-            ViewBag.AvaliableTimes = new List<TimeSpan>();
-        }
-
-        ViewBag.SelectedDate = date;
-        return View(model);
-    }
-
-    [HttpPost]
-    public ActionResult CreateEmployee(ClientService model)
-    {
-        if (ModelState.IsValid)
-        {
-            if (model.DateTime.DayOfWeek == DayOfWeek.Saturday || model.DateTime.DayOfWeek == DayOfWeek.Sunday)
-            {
-                ModelState.AddModelError("", "Não é possível agendar nos finais de semana");
-                return CreateEmployee(model.DateTime);
-            }
-
-            var existsAppointment = db.ClientServices.Any(cs => cs.DateTime == model.DateTime);
-
-            if (existsAppointment)
-            {
-                ModelState.AddModelError("", "O horário selecionado já está ocupado");
-                return CreateEmployee(model.DateTime);
-            }
-        }
-        else
-        {
-            db.ClientServices.Add(model);
-            db.SaveChanges();
-            return RedirectToAction("Read");
-        }
-        return CreateEmployee(model.DateTime);
-    }
-
-
-    [HttpGet]
     public ActionResult Update(int id)
     {
-        ClientService clientService = db.ClientServices.Single(e => e.ClientServiceId == id);
+        ClientService clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
         return View(clientService);
     }
 
@@ -259,6 +205,12 @@ public class ClientServicesController : Controller
     {
         if (ModelState.IsValid)
         {
+            ClientService clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
+            if (clientService == null)
+            {
+                ModelState.AddModelError("", "Agendamento não encontrado");
+                return RedirectToAction("ReadEmployee");
+            }
             if (model.DateTime.DayOfWeek == DayOfWeek.Saturday || model.DateTime.DayOfWeek == DayOfWeek.Sunday)
             {
                 ModelState.AddModelError("", "Não é possível agendar nos finais de semana");
@@ -273,14 +225,12 @@ public class ClientServicesController : Controller
                 return View(model);
             }
 
-            ClientService clientService = db.ClientServices.Single(e => e.ClientServiceId == id);
-
             clientService.DateTime = model.DateTime;
             clientService.Status = model.Status;
             clientService.Description = model.Description;
 
             db.SaveChanges();
-            return RedirectToAction("Read");
+            return RedirectToAction("ReadEmployee");
         }
         return View(model);
     }
