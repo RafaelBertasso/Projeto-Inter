@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProjetoInter.Models;
@@ -149,7 +150,8 @@ public class ClientServicesController : Controller
         {
             ViewBag.AvaliableTimes = new List<TimeSpan>();
         }
-        return View("Create",model);
+        ViewBag.SelectedDate = model.DateTime;
+        return View("Create", model);
     }
 
     [HttpPost]
@@ -176,19 +178,19 @@ public class ClientServicesController : Controller
         }
         var serviceId = model.ServiceId;
 
+
         var modelBase = (ClientService)model;
 
-        modelBase.DateTime = model.DateTime + model.Time.TimeOfDay;
+        var userId = HttpContext.Session.GetInt32("userId");
+        modelBase.ClientId = userId.Value;
+
+        
+        modelBase.DateTime = model.Time;
         db.ClientServices.Add(modelBase);
-        Console.WriteLine(modelBase);
         db.SaveChanges();
         return RedirectToAction("Read");
     }
 
-    public ActionResult GetServices()
-    {
-        return RedirectToAction("Create", "ClientService");
-    }
     [HttpGet]
     public ActionResult CreateEmployee(DateTime? date)
     {
