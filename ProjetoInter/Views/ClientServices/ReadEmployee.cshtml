@@ -66,9 +66,8 @@
                 <td>@clientServices.Description</td>
                 <td>
                     <div class="btn-group">
-                        <a href="/clientServices/update/@clientServices.ClientServiceId"
-                            class="btn btn-sm btn-outline-success"><i class="bi-pencil-square"></i>Edit</a>
-                        <a href="@Url.Action("Update", "ClientServices", new {id = clientServices.ClientServiceId})">Link</a>
+                        <a href="/clientServices/delete/@clientServices.ClientServiceId"
+                            class="btn btn-sm btn-outline-danger"><i class="bi-trash"></i>Delete</a>
                     </div>
                 </td>
             </tr>

@@ -191,70 +191,19 @@ public class ClientServicesController : Controller
         return RedirectToAction("Read");
     }
 
-    [HttpGet]
-    public ActionResult Update(int id)
+    public ActionResult Delete(int id)
     {
-        ClientService clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
+        var clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
 
         if (clientService == null)
         {
-            return RedirectToAction("Update");
+            return RedirectToAction ("ReadEmployee");
         }
 
-        ViewBag.SelectedDate = clientService.DateTime.Date;
-        ViewBag.SelectedServiceId = clientService.ServiceId;
-        ViewBag.SelectedTime = clientService.DateTime.TimeOfDay;
-        return View(clientService);
-    }
-
-    [HttpPost]
-    public ActionResult Update(int id, ClientService model)
-    {
-        if (ModelState.IsValid)
-        {
-            if (model.DateTime.DayOfWeek == DayOfWeek.Saturday || model.DateTime.DayOfWeek == DayOfWeek.Sunday)
-            {
-                ModelState.AddModelError("", "Não é possível agendar nos finais de semana");
-                return View(model);
-            }
-
-            var existsAppointment = db.ClientServices.Any(cs => cs.DateTime == model.DateTime && cs.ClientServiceId != id);
-
-            if (existsAppointment)
-            {
-                ModelState.AddModelError("", "O horário selecionado já está ocupado");
-                return View(model);
-            }
-
-            ClientService clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
-            if (clientService != null)
-            {
-                if (clientService.DateTime != model.DateTime)
-                {
-                    var oldTime = db.ClientServices.FirstOrDefault(cs => cs.DateTime == clientService.DateTime);
-                    if (oldTime != null)
-                    {
-                        db.ClientServices.Remove(oldTime);
-                    }
-                }
-            }
-
-            clientService.DateTime = model.DateTime;
-            clientService.Description = model.Description;
-
-            db.SaveChanges();
-            return RedirectToAction("ReadEmployee");
-        }
-        return View(model);
-    }
-
-    public ActionResult Delete(int id)
-    {
-        ClientService clientService = db.ClientServices.Single(e => e.ClientServiceId == id);
-        db.Remove(clientService);
+        db.ClientServices.Remove(clientService);
         db.SaveChanges();
 
-        return RedirectToAction("Read");
+        return RedirectToAction("ReadEmployee");
     }
 
 }

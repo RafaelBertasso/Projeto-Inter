@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj": {}
+    "c:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj": {
+    "c:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj",
+        "projectUniqueName": "c:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj",
         "projectName": "Projeto-Inter",
-        "projectPath": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj",
+        "projectPath": "c:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\Projeto-Inter.csproj",
         "packagesPath": "C:\\Users\\Rafael\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\obj\\",
+        "outputPath": "c:\\Users\\Rafael\\FATEC User\\POO\\Projeto-Rio-Preto-Piscinas\\ProjetoInter\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Rafael\\AppData\\Roaming\\NuGet\\NuGet.Config"
