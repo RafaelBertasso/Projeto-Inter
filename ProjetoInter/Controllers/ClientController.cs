@@ -28,7 +28,7 @@ public class ClientController : Controller
     {
         db.Clients.Add(model);
         db.SaveChanges();
-        return RedirectToAction("ReadEmployee", "ClientServices");
+        return RedirectToAction("Read", "Client");
     }
 
 
@@ -43,7 +43,7 @@ public class ClientController : Controller
     {
         db.Clients.Add(model);
         db.SaveChanges();
-        return RedirectToAction("Read", "ClientServices");
+        return RedirectToAction("Login", "Client");
     }
 
     [HttpGet]

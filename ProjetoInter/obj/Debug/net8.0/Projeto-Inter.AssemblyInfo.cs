@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Projeto-Inter")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b17c71db9ad215fa8845b2cc1b2135c55366937e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+71731e5c3d20fa447675fcf6e959a638d2d5e50e")]
 [assembly: System.Reflection.AssemblyProductAttribute("Projeto-Inter")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Projeto-Inter")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
