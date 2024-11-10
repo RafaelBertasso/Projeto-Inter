@@ -94,7 +94,8 @@ public class ClientController : Controller
     [HttpPost]
     public ActionResult Login(ClientViewModel model)
     {
-        var client = db.Clients.SingleOrDefault(e => e.Email == model.Email && e.Password == model.Password);
+        var client = db.Clients.Where(e => e.Email == model.Email && e.Password == model.Password)
+        .FirstOrDefault();
 
         if (client == null)
         {

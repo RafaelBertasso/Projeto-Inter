@@ -55,7 +55,6 @@
                 <th>Serviço</th>
                 <th>Horário</th>
                 <th>Descrição</th>
-                <th>Status</th>
             </tr>
         </thead>
         @foreach (var clientServices in Model)
@@ -65,12 +64,11 @@
                 <td>@clientServices.Service.Name</td>
                 <td>@clientServices.DateTime</td>
                 <td>@clientServices.Description</td>
-                <td>@clientServices.Status</td>
                 <td>
                     <div class="btn-group">
                         <a href="/clientServices/update/@clientServices.ClientServiceId"
                             class="btn btn-sm btn-outline-success"><i class="bi-pencil-square"></i>Edit</a>
-                        <a href="/clientServices/delete/"></a>
+                        <a href="@Url.Action("Update", "ClientServices", new {id = clientServices.ClientServiceId})">Link</a>
                     </div>
                 </td>
             </tr>

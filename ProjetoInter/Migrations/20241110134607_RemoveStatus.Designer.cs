@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Projeto_Inter.Migrations
 {
     [DbContext(typeof(ServiceDatabase))]
-    [Migration("20241108172409_CreateTime")]
-    partial class CreateTime
+    [Migration("20241110134607_RemoveStatus")]
+    partial class RemoveStatus
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,12 +43,6 @@ namespace Projeto_Inter.Migrations
 
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("ClientServiceId");
 

@@ -51,7 +51,6 @@ public class ClientServicesController : Controller
                             Duration = service.Duration
                         },
                         DateTime = clientService.DateTime,
-                        Status = clientService.Status,
                         Description = clientService.Description
                     };
 
@@ -94,7 +93,6 @@ public class ClientServicesController : Controller
                             Duration = service.Duration
                         },
                         DateTime = clientService.DateTime,
-                        Status = clientService.Status,
                         Description = clientService.Description
                     };
 
@@ -186,7 +184,7 @@ public class ClientServicesController : Controller
         var userId = HttpContext.Session.GetInt32("userId");
         modelBase.ClientId = userId.Value;
 
-        
+
         modelBase.DateTime = model.Time;
         db.ClientServices.Add(modelBase);
         db.SaveChanges();
@@ -197,6 +195,15 @@ public class ClientServicesController : Controller
     public ActionResult Update(int id)
     {
         ClientService clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
+
+        if (clientService == null)
+        {
+            return RedirectToAction("Update");
+        }
+
+        ViewBag.SelectedDate = clientService.DateTime.Date;
+        ViewBag.SelectedServiceId = clientService.ServiceId;
+        ViewBag.SelectedTime = clientService.DateTime.TimeOfDay;
         return View(clientService);
     }
 
@@ -205,12 +212,6 @@ public class ClientServicesController : Controller
     {
         if (ModelState.IsValid)
         {
-            ClientService clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
-            if (clientService == null)
-            {
-                ModelState.AddModelError("", "Agendamento não encontrado");
-                return RedirectToAction("ReadEmployee");
-            }
             if (model.DateTime.DayOfWeek == DayOfWeek.Saturday || model.DateTime.DayOfWeek == DayOfWeek.Sunday)
             {
                 ModelState.AddModelError("", "Não é possível agendar nos finais de semana");
@@ -225,8 +226,20 @@ public class ClientServicesController : Controller
                 return View(model);
             }
 
+            ClientService clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
+            if (clientService != null)
+            {
+                if (clientService.DateTime != model.DateTime)
+                {
+                    var oldTime = db.ClientServices.FirstOrDefault(cs => cs.DateTime == clientService.DateTime);
+                    if (oldTime != null)
+                    {
+                        db.ClientServices.Remove(oldTime);
+                    }
+                }
+            }
+
             clientService.DateTime = model.DateTime;
-            clientService.Status = model.Status;
             clientService.Description = model.Description;
 
             db.SaveChanges();

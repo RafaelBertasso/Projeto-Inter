@@ -41,12 +41,6 @@ namespace Projeto_Inter.Migrations
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("ClientServiceId");
 
                     b.HasIndex("ClientId");

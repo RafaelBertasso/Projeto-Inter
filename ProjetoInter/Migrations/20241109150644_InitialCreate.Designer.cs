@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Projeto_Inter.Migrations
 {
     [DbContext(typeof(ServiceDatabase))]
-    [Migration("20241107120906_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20241109150644_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

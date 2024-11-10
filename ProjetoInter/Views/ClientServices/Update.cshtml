@@ -1,4 +1,4 @@
-@model ProjetoInter.Models.ClientService
+@model ProjetoInter.Models.ClientService;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +13,7 @@
 </head>
 
 <body class="container-fluid">
+    <h2>Atualizar</h2>
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -21,58 +22,50 @@
         </ol>
     </nav>
 
-    <form action="/clientServices/update/@Model.ClientServiceId" method="get" class="row g-3" asp-action="Create">
+    <form action="/clientServices/update/@Model.ClientServiceId" method="post" class="row g-3">
         <div class="col-12 form-group">
             <label for="Date" class="control-label form-label">Data</label>
-            <input type="date" id="Date" name="Date" class="form-control" placeholder="Selecione uma data"
-                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" required onchange="this.form.submit()">>
+            <input type="date" id="Date" name="DateTime" class="form-control" asp-for="DateTime"
+                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
         </div>
+        @* <div class="col-12 form-group">
+        <label class="control-label form-label">Serviço</label>
+        <select asp-for="ServiceId" name="ServiceId" id="ServiceId" class="form-select">
+        <option value="">Selecione um serviço</option>
+        @foreach (var service in ViewBag.Services as List<ProjetoInter.Models.Service>)
+        {
+        <option value="@service.ServiceId" @(service.ServiceId == ViewBag.SelectedServiceId ? "selected" :
+        "")>@service.Name</option>
+        }
+        </select>
+        </div> *@
+        <input type="hidden" asp-for="UserId" value="@ViewBag.UserId">
         <div class="col-12 form-group">
-            <label asp-for="ServiceId" class="control-label form-label">Serviço</label>
-            <select asp-for="ServiceId" name="ServiceId" id="ServiceId" class="form-select" required>
-                <option selected value="@Model.Service.ServiceId">@Model.Service.Name</option>
-                @foreach (var service in ViewBag.Services)
-                {
-                    <option value="@service.ServiceId">@service.Name</option>
-                }
-            </select>
-        </div>
-    </form>
-    <form action="/clientServices/update/@Model.ClientServiceId" method="post" class="row g-3" asp-action="Create">
-        <input type="hidden" asp-for="ServiceId" value="@ViewBag.ServiceId">
-        <input type="hidden" asp-for="DateTime" value="@ViewBag.SelectedDate">
-        <div class="col-12 form-group">
-            <label for="Time" class="control-label form-label">Horário</label>
-            <select name="Time" id="Time" class="form-select" required>
-                <option selected>@ViewBag.SelectedTime</option>
-                @foreach (var time in ViewBag.AvaliableTimes)
-                {
-                    <option value="@($"{ViewBag.SelectedDate?.ToString("yyyy-MM-dd")} {time:hh\\:mm}")">
-                        @time.ToString(@"hh\:mm")
-                    </option>
-                }
-            </select>
-        </div>
-        <div class="col-12">
-            <label for="inputStatus" class="form-label">Status</label>
-            <select name="Status" id="specificSizeSelect" class="form-select" required>
-                <option selected value="@Model.Status">@Model.Status</option>
-                <option value="1">Aguardando visita</option>
-                <option value="2">Em progresso</option>
-                <option value="3">Finalizada</option>
-                <option value="4">Cancelado</option>
-            </select>
+        <label for="Time" class="control-label form-label">Horário</label>
+        <select name="Time" id="Time" class="form-select" asp-for="Time">
+        <option selected>Selecione um horário</option>
+        @foreach (var time in ViewBag.AvaliableTimes)
+        {
+        var selectedTime = (Model.DateTime.ToString(@"HH:mm") == time.ToString(@"HH:mm")) ? "selected" : "";
+        <option value="@($"{ViewBag.SelectedDate?.ToString("yyyy-MM-dd")} {time:hh\\:mm}")" @selectedTime>
+        @time.ToString(@"hh\:mm")
+        </option>
+        }
+        </select>
         </div>
         <div class="col-12">
             <label for="inputDescription" class="form-label">Observações (opcional)</label>
-            <input type="text" name="Description" class="form-control" id="inputDescription" value="@Model.Description">
+            <input type="text" name="Description" class="form-control" id="inputDescription" asp-for="Description"
+                value="@Model.Description">
         </div>
-        <div class="col-md-6">
-            <button type="submit" class="btn btn-primary w-100">Agendar</button>
-        </div>
-        <div class="col-md-6">
-            <a href="/clientServices/readEmployee" class="btn btn-outline-secondary w-100">Voltar</a>
-        </div>
+    </form>
+    <div class="col-md-6">
+        <button type="submit" class="btn btn-primary w-100" formaction="/clientServices/update/@Model.ClientServiceId"
+            formmethod="post">Salvar</button>
+    </div>
+    <div class="col-md-6">
+        <a href="/clientServices/readEmployee" class="btn btn-outline-secondary w-100">Voltar</a>
+    </div>
     </form>
 
 </body>

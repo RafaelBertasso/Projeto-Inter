@@ -26,7 +26,7 @@
         <div class="col-12 form-group">
             <label for="Date" class="control-label form-label">Data</label>
             <input type="date" id="Date" name="DateTime" class="form-control" placeholder="Selecione uma data" asp-for="DateTime"
-                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" onchange="this.form.submit()">
+                value="@ViewBag.SelectedDate?.ToString("yyyy-MM-dd")" onchange="this.form.submit()" required>
         </div>
         <div class="col-12 form-group">
             <label class="control-label form-label">Serviço</label>
@@ -53,16 +53,6 @@
                 }
             </select>
         </div>
-        @* <div class="col-12">
-        <label for="inputStatus" class="form-label">Status</label>
-        <select name="Status" id="specificSizeSelect" class="form-select" required>
-        <option selected>Escolha...</option>
-        <option value="1">Aguardando visita</option>
-        <option value="2">Em progresso</option>
-        <option value="3">Finalizada</option>
-        <option value="4">Cancelado</option>
-        </select>
-        </div> *@
         <div class="col-12">
             <label for="inputDescription" class="form-label">Observações (opcional) </label>
             <input type="text" placeholder="Observações" name="Description" class="form-control" id="inputDescription" asp-for="Description">
