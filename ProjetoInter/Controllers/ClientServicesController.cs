@@ -87,11 +87,13 @@ public class ClientServicesController : Controller
 
                         Service = new Service
                         {
+                            ServiceId = service.ServiceId,
                             Name = service.Name,
                             Description = service.Description,
                             PathFoto = service.PathFoto,
                             Duration = service.Duration
                         },
+                        ClientServiceId = clientService.ClientServiceId,
                         DateTime = clientService.DateTime,
                         Description = clientService.Description
                     };
@@ -193,14 +195,14 @@ public class ClientServicesController : Controller
 
     public ActionResult Delete(int id)
     {
-        var clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
+        ClientService clientService = db.ClientServices.SingleOrDefault(e => e.ClientServiceId == id);
 
         if (clientService == null)
         {
-            return RedirectToAction ("ReadEmployee");
+            return RedirectToAction("ReadEmployee");
         }
 
-        db.ClientServices.Remove(clientService);
+        db.Remove(clientService);
         db.SaveChanges();
 
         return RedirectToAction("ReadEmployee");

@@ -5,6 +5,7 @@ namespace ProjetoInter.Models;
 
 public class ClientService
 {
+    [Key]
     public int ClientServiceId { get; set; }
     public int ClientId { get; set; }
     public int ServiceId { get; set; }
