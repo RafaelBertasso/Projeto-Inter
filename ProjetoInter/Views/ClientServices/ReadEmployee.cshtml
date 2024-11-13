@@ -48,6 +48,24 @@
         </ol>
     </nav>
 
+    <form action="/clientServices/readEmployee" method="get">
+        <div class="row mb-3">
+            <label for="clientId" class="form-label">Filtrar por cliente</label>
+            <select name="clientId" id="clientId" class="form-select">
+                <option value="">Todos os clientes</option>
+                @foreach (var client in ViewBag.Clients as List<ProjetoInter.Models.Client>)
+                {
+                    <option value="@client.UserId" @(client.UserId == (int?)ViewBag.SelectedClientId ? "selected" : "")>
+                        @client.Name
+                    </option>
+                }
+            </select>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary mt-4">Aplicar</button>
+        </div>
+    </form>
+
     <table class="table table-striped">
         <thead>
             <tr>

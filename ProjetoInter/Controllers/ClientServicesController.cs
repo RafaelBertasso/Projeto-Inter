@@ -31,7 +31,6 @@ public class ClientServicesController : Controller
                             Phone = client.Phone,
                             DateOfBirth = client.DateOfBirth,
                             Password = client.Password,
-                            Gender = client.Gender,
                             Street = client.Street,
                             City = client.City,
                             State = client.State,
@@ -55,12 +54,12 @@ public class ClientServicesController : Controller
         return View(query.ToList());
     }
 
-    public ActionResult ReadEmployee()
+    public ActionResult ReadEmployee(int? clientId)
     {
         var query = from client in db.Clients
                     join clientService in db.ClientServices on client.UserId equals clientService.ClientId
                     join service in db.Services on clientService.ServiceId equals service.ServiceId
-                    where client.UserId == clientService.ClientId
+                    where !clientId.HasValue || client.UserId == clientService.ClientId
                     where service.ServiceId == clientService.ServiceId
                     select new ClientService
                     {
@@ -73,7 +72,6 @@ public class ClientServicesController : Controller
                             Phone = client.Phone,
                             DateOfBirth = client.DateOfBirth,
                             Password = client.Password,
-                            Gender = client.Gender,
                             Street = client.Street,
                             City = client.City,
                             State = client.State,
@@ -95,6 +93,12 @@ public class ClientServicesController : Controller
                         DateTime = clientService.DateTime,
                         Description = clientService.Description
                     };
+        if (clientId.HasValue)
+        {
+            query = query.Where(cs => cs.Client.UserId == clientId.Value);
+        }
+        ViewBag.Clients = db.Clients.ToList();
+        ViewBag.SelectedClientId = clientId;
 
         return View(query.ToList());
     }

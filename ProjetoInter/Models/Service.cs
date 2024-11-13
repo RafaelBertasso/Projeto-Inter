@@ -6,7 +6,7 @@ namespace ProjetoInter.Models;
 [Table("Service")]
 public class Service
 {
-    // [Key]
+    [Key]
     public int ServiceId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }

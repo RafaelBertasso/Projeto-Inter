@@ -59,7 +59,6 @@ public class ClientController : Controller
         Client client = db.Clients.Single(e => e.UserId == id);
 
         client.Name = model.Name;
-        client.Gender = model.Gender;
         client.Email = model.Email;
         client.DateOfBirth = model.DateOfBirth;
         client.Phone = model.Phone;
