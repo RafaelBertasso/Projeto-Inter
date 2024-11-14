@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ServiceDatabase>(options => options.UseSqlServer("Server=localhost; Database=dbrppiscinas; Trusted_Connection=True; TrustServerCertificate=True"));
 
+builder.Services.AddHttpClient();
 builder.Services.AddSession();
 
 var app = builder.Build();

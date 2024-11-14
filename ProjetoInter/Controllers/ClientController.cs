@@ -1,3 +1,5 @@
+using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoInter.Models;
 
@@ -6,10 +8,12 @@ namespace ProjetoInter.Controllers;
 public class ClientController : Controller
 {
     private readonly ServiceDatabase db;
+    private readonly HttpClient httpClient;
 
-    public ClientController(ServiceDatabase db)
+    public ClientController(ServiceDatabase db, IHttpClientFactory httpClientFactory)
     {
         this.db = db;
+        httpClient = httpClientFactory.CreateClient();
     }
 
     public IActionResult Read()
@@ -105,7 +109,37 @@ public class ClientController : Controller
         {
             HttpContext.Session.SetInt32("userId", client.UserId);
             HttpContext.Session.SetString("userName", client.Name);
-            return RedirectToAction("Read", "ClientServices");
+            return RedirectToAction("Read", "Portifolio");
         }
     }
+
+    [HttpGet]
+    public async Task<IActionResult> BuscarCep(string cep)
+    {
+        if (string.IsNullOrEmpty(cep) || cep.Length != 8)
+        {
+            return BadRequest("CEP inválido.");
+        }
+
+        string apiUrl = $"https://example.api.findcep.com/v1/cep/{cep}.json";
+        httpClient.DefaultRequestHeaders.Add("Referer", "http://localhost:5285");
+
+        try
+        {
+            var response = await httpClient.GetAsync(apiUrl);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                return BadRequest("Erro na consulta do CEP");
+            }
+
+            var data = await response.Content.ReadAsStringAsync();
+            return Ok(data);
+        }
+        catch
+        {
+            return BadRequest("Erro na consulta do CEP");
+        }
+    }
+
 }
