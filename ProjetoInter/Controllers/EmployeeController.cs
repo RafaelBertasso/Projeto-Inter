@@ -33,20 +33,6 @@ public class EmployeeController : Controller
     }
 
     [HttpGet]
-    public ActionResult CreateLogin()
-    {
-        return View();
-    }
-
-    [HttpPost]
-    public ActionResult CreateLogin(Employee model)
-    {
-        db.Employees.Add(model);
-        db.SaveChanges();
-        return RedirectToAction("Read");
-    }
-
-    [HttpGet]
     public ActionResult Update(int id)
     {
         Employee employee = db.Employees.Single(e => e.UserId == id);

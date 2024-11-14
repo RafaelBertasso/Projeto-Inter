@@ -169,17 +169,10 @@ public class ClientServicesController : Controller
 
         if (model.DateTime.DayOfWeek == DayOfWeek.Saturday || model.DateTime.DayOfWeek == DayOfWeek.Sunday)
         {
-            ModelState.AddModelError("", "Não é possível agendar nos finais de semana");
-            return View(model);
+            return RedirectToAction("Create",model);
         }
 
         var existsAppointment = db.ClientServices.Any(cs => cs.DateTime == model.DateTime);
-
-        if (existsAppointment)
-        {
-            ModelState.AddModelError("", "O horário selecionado já está ocupado");
-            return View(model);
-        }
         var serviceId = model.ServiceId;
 
 
@@ -206,6 +199,8 @@ public class ClientServicesController : Controller
 
         db.Remove(clientService);
         db.SaveChanges();
+
+        TempData["SuccessMessage"] = " Agendamento excluído com sucesso!";
 
         return RedirectToAction("ReadEmployee");
     }

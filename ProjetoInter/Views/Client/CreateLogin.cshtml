@@ -8,6 +8,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .botao {
+            margin: 15px 0;
+        }
+
+        #botoes {
+            background-color: #4682b4;
+            border-color: #4682b4;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 
 <body class="container-fluid">
@@ -20,13 +34,11 @@
         </div>
         <div class="col-md-6">
             <label for="inputPhone4" class="form-label">Telefone (com ddd)</label> <input type="tel"
-                placeholder="Ex: 17984512014" name="Phone" class="form-control" id="inputPhone4"
-                pattern="[0-9]{2}[0-9]{5}[0-9]{4}" required>
+                placeholder="00 000000000" name="Phone" class="form-control" id="inputPhone4" maxlength="15" required>
         </div>
         <div class="col-md-6">
             <label for="inputDateOfBirth" class="form-label">Data de Nascimento</label>
-            <input type="date" placeholder="Birthday (Ex: dd/mm/yyyy)" name="DateOfBirth" class="form-control"
-                id="inputDateOfBirth" required>
+            <input type="date" name="DateOfBirth" class="form-control" id="inputDateOfBirth" required>
         </div>
         <div class="col-md-6">
             <label for="inputEmail4" class="form-label">E-Mail</label>
@@ -39,7 +51,8 @@
         </div>
         <div class="col-md-12">
             <label for="inputCep" class="form-label">CEP</label>
-            <input type="text" placeholder="15030-050" name="Cep" class="form-control" id="inputCep" required>
+            <input type="text" placeholder="00000-000" name="Cep" class="form-control" id="inputCep" maxlength="9"
+                required>
         </div>
         <div class="col-12">
             <label for="inputCity" class="form-label">Cidade</label>
@@ -67,13 +80,49 @@
             <label for="inputState" class="form-label">Estado</label>
             <input type="text" placeholder="SP" name="State" class="form-control" id="inputState" required>
         </div>
-        <div class="col-md-6">
-            <button type="submit" class="btn btn-primary w-100">Criar</button>
+        <div class="col-md-6 botao">
+            <button type="submit" class="btn btn-primary w-100" id="botoes">Criar</button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 botao">
             <a href="/client/login" class="btn btn-outline-secondary w-100">Voltar</a>
         </div>
     </form>
+    <script>
+        function validateAndFormatCep(cep) {
+            return cep.replace(/\D/g, "").replace(/^(\d{5})(\d{3})$/, "$1-$2");
+        }
+
+        async function buscarCep(cep) {
+            const apiUrl = `https://example.api.findcep.com/v1/cep/${cep.replace(/\D/g, "")}.json`;
+            const headers = { 'Referer': 'https://your-site.com' };
+
+            try {
+                let response = await fetch(apiUrl, { headers: headers });
+                if (!response.ok) throw new Error("Erro na consulta do CEP");
+
+                let data = await response.json();
+                $('#inputStreet').val(data.logradouro);
+                $('#inputDistrict').val(data.bairro);
+                $('#inputCity').val(data.cidade);
+                $('#inputState').val(data.uf);
+            } catch (error) {
+                alert("CEP inválido ou erro na API.");
+            }
+        }
+
+        $('#inputCep').on('input', function () {
+            $(this).val(validateAndFormatCep($(this).val()));
+        }).on('blur', function () {
+            const cep = $(this).val();
+            if (cep.length === 9) buscarCep(cep);
+        });
+
+        $('#inputPhone4').on('input', function () {
+            let tel = $(this).val().replace(/\D/g, '');
+            tel = tel.replace(/^(\d{2})(\d{5})(\d{4}).*/, "$1 $2-$3");
+            $(this).val(tel);
+        });
+    </script>
 </body>
 
 </html>

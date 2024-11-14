@@ -33,6 +33,18 @@
             display: block;
             margin-bottom: 0.3em;
         }
+
+        .botao {
+            margin: 15px 0;
+        }
+
+        #botoes {
+            background-color: #4682b4;
+            border-color: #4682b4;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
     </style>
 </head>
 
@@ -63,10 +75,10 @@
             <label for="inputPassword" class="form-label">Senha</label>
             <input type="password" placeholder="Senha" name="Password" class="form-control" id="inputPassword" required>
         </div>
-        <div class="col-md-6">
-            <button class="btn btn-primary w-100">Criar</button>
+        <div class="col-md-6 botao">
+            <button class="btn btn-primary w-100" id="botoes">Criar</button>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 botao">
 
             <a href="/employee/read" class="btn btn-outline-secondary w-100">Voltar</a>
         </div>
