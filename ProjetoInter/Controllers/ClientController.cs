@@ -116,29 +116,44 @@ public class ClientController : Controller
     [HttpGet]
     public async Task<IActionResult> BuscarCep(string cep)
     {
-        if (string.IsNullOrEmpty(cep) || cep.Length != 8)
+        if (string.IsNullOrEmpty(cep))
         {
-            return BadRequest("CEP inválido.");
+            return BadRequest(new { mensagem = "O CEP é obrigatório." });
         }
 
-        string apiUrl = $"https://example.api.findcep.com/v1/cep/{cep}.json";
-        httpClient.DefaultRequestHeaders.Add("Referer", "http://localhost:5285");
+        cep = cep.Replace("-", "").Trim();
+
+        if (cep.Length != 8)
+        {
+            return BadRequest(new { mensagem = "CEP inválido." });
+        }
+
+        string apiUrl = $"https://viacep.com.br/ws/{cep}/json/";
 
         try
         {
+            using var httpClient = new HttpClient();
+
             var response = await httpClient.GetAsync(apiUrl);
 
             if (!response.IsSuccessStatusCode)
             {
-                return BadRequest("Erro na consulta do CEP");
+                return BadRequest(new { mensagem = "Erro na consulta do CEP. Tente novamente mais tarde." });
             }
 
             var data = await response.Content.ReadAsStringAsync();
-            return Ok(data);
+
+            if (data.Contains("\"erro\": true"))
+            {
+                return BadRequest(new { mensagem = "CEP não encontrado." });
+            }
+
+            return Content(data, "application/json");
         }
-        catch
+        catch (Exception ex)
         {
-            return BadRequest("Erro na consulta do CEP");
+            Console.WriteLine($"Erro ao consultar o CEP: {ex.Message}");
+            return BadRequest(new { mensagem = $"Erro ao consultar o CEP: {ex.Message}" });
         }
     }
 

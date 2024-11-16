@@ -100,27 +100,24 @@
         }
 
         async function buscarCep(cep) {
-            const formattedCep = cep.replace(/\D/g, "");
-            if (formattedCep.length !== 8) {
-                alert("CEP inválido.");
-                return;
-            }
-
-            const apiUrl = `https://example.api.findcep.com/v1/cep/${formattedCep}.json`;
-            const headers = { 'Referer': 'http://localhost:5285' };
+            const apiUrl = `/Client/BuscarCep?cep=${cep.replace(/\D/g, "")}`;
 
             try {
-                let response = await fetch(apiUrl, { headers: headers });
+                let response = await fetch(apiUrl);
+
                 if (!response.ok) throw new Error("Erro na consulta do CEP");
 
                 let data = await response.json();
 
-                $('#inputStreet').val(data.logradouro || "");
-                $('#inputDistrict').val(data.bairro || "");
-                $('#inputCity').val(data.cidade || "");
-                $('#inputState').val(data.uf || "");
+                if (data.erro) {
+                    alert("CEP não encontrado.");
+                } else {
+                    $('#inputStreet').val(data.logradouro);
+                    $('#inputDistrict').val(data.bairro);
+                    $('#inputCity').val(data.localidade);
+                    $('#inputState').val(data.uf);
+                }
             } catch (error) {
-                console.error(error);
                 alert("CEP inválido ou erro na API.");
             }
         }
