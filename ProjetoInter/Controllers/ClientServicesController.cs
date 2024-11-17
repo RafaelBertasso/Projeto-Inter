@@ -56,6 +56,10 @@ public class ClientServicesController : Controller
 
     public ActionResult ReadEmployee(int? clientId)
     {
+
+        var filteredClients = db.Clients
+        .Where(c => db.ClientServices.Any(cs => cs.ClientId == c.UserId)).ToList();
+
         var query = from client in db.Clients
                     join clientService in db.ClientServices on client.UserId equals clientService.ClientId
                     join service in db.Services on clientService.ServiceId equals service.ServiceId
@@ -97,7 +101,7 @@ public class ClientServicesController : Controller
         {
             query = query.Where(cs => cs.Client.UserId == clientId.Value);
         }
-        ViewBag.Clients = db.Clients.ToList();
+        ViewBag.Clients = filteredClients;
         ViewBag.SelectedClientId = clientId;
 
         return View(query.ToList());
