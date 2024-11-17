@@ -10,16 +10,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .botao {
-        margin: 15px 0;
+            margin: 15px 0;
         }
+
         #botoes {
-        background-color: #4682b4;
-        border-color: #4682b4;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
+            background-color: #4682b4;
+            border-color: #4682b4;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -41,7 +43,8 @@
         </div>
         <div class="col-md-6">
             <label for="inputPhone4" class="form-label">Telefone</label>
-            <input type="tel" name="Phone" id="inputPhone4" class="form-control" value="@Model.Phone" required>
+            <input type="tel" name="Phone" id="inputPhone4" class="form-control" value="@Model.Phone" required
+                maxlength="15">
         </div>
         <div class="col-md-6">
             <label for="inputDateOfBirth" class="form-label">Data de Nascimento</label>
@@ -52,10 +55,14 @@
             <label for="inputEmail4" class="form-label">E-Mail</label>
             <input type="email" name="Email" id="inputEmail4" class="form-control" value="@Model.Email" required>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-12">
             <label for="inputPassword4" class="form-label">Senha</label>
             <input type="password" name="Password" id="inputPassword4" class="form-control" value="@Model.Password"
                 required>
+        </div>
+        <div class="col-md-12">
+            <label for="inputCep" class="form-label">CEP</label>
+            <input type="text" name="Cep" class="form-control" id="inputCep" value="@Model.Cep" required maxlength="9">
         </div>
         <div class="col-12">
             <label for="inputCity" class="form-label">Cidade</label>
@@ -73,18 +80,15 @@
             <label for="inputNumber" class="form-label">Número</label>
             <input type="number" name="Number" class="form-control" id="inputNumber" value="@Model.Number" required>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="inputComplement" class="form-label">Complemento</label>
             <input type="text" name="Complement" class="form-control" id="inputComplement" value="@Model.Complement">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="inputState" class="form-label">Estado</label>
             <input type="text" name="State" class="form-control" id="inputState" value="@Model.State" required>
         </div>
-        <div class="col-md-4">
-            <label for="inputCep" class="form-label">CEP</label>
-            <input type="text" name="Cep" class="form-control" id="inputCep" value="@Model.Cep" required>
-        </div>
+
         <div class="col-md-6 botao">
             <button class="btn btn-primary w-100" id="botoes">Salvar</button>
         </div>
@@ -92,6 +96,47 @@
             <a href="/client/read" class="btn btn-outline-secondary w-100">Voltar</a>
         </div>
     </form>
+    <script>
+        function validateAndFormatCep(cep) {
+            return cep.replace(/\D/g, "").replace(/^(\d{5})(\d{3})$/, "$1-$2");
+        }
+
+        async function buscarCep(cep) {
+            const apiUrl = `/Client/BuscarCep?cep=${cep.replace(/\D/g, "")}`;
+
+            try {
+                let response = await fetch(apiUrl);
+
+                if (!response.ok) throw new Error("Erro na consulta do CEP");
+
+                let data = await response.json();
+
+                if (data.erro) {
+                    alert("CEP não encontrado.");
+                } else {
+                    $('#inputStreet').val(data.logradouro);
+                    $('#inputDistrict').val(data.bairro);
+                    $('#inputCity').val(data.localidade);
+                    $('#inputState').val(data.uf);
+                }
+            } catch (error) {
+                alert("CEP inválido ou erro na API.");
+            }
+        }
+
+        $('#inputCep').on('input', function () {
+            $(this).val(validateAndFormatCep($(this).val()));
+        }).on('blur', function () {
+            const cep = $(this).val();
+            if (cep.length === 9) buscarCep(cep);
+        });
+
+        $('#inputPhone4').on('input', function () {
+            let tel = $(this).val().replace(/\D/g, '');
+            tel = tel.replace(/^(\d{2})(\d{5})(\d{4}).*/, "$1 $2-$3");
+            $(this).val(tel);
+        });
+    </script>
 
 </body>
 
